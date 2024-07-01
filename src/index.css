@@ -1,0 +1,184 @@
+/* Common -------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.app-container {
+  width: 100%;
+  height: 100%;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+/* Header -------------------------------------- */
+.header-container {
+  width: 100%;
+  height: 8%;
+  background-color: rgb(55, 145, 230);
+  display: flex;
+  justify-content: center;
+}
+
+.header-container button {
+  width: 150px;
+  height: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.8px;
+  color: white;
+  background-color: rgb(55, 145, 230);
+  border: none;
+}
+
+.header-container button:hover {
+  background-color: rgb(110, 170, 230);
+}
+
+/* Login Page ---------------------------------- */
+
+
+/* Main Page ----------------------------------- */
+.main-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-title-container {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-title-container h1 {
+  margin-left: 20px;
+  margin-right: 20px;
+  letter-spacing: 1px;
+}
+
+.calendar-title-container button {
+  width: 30px;
+  height: 30px;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 50%;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.calendar-title-container button:hover {
+  background-color: rgb(50, 50, 50);
+}
+
+/* Main Page - Calendar ------------------------ */
+.calendar-container {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-inner-container {
+  width: 100%;
+  height: 100%;
+  border-left: 2px solid rgb(70, 125, 155);
+  border-top: 2px solid rgb(70, 125, 155);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: right;
+  align-items: center;
+}
+
+/* Main Page - Calendar Button ----------------- */
+.calendar-button {
+  position: relative;
+  width: calc(100% / 7);
+  height: calc(100% / 6);
+}
+
+.invisible-text {
+  visibility: hidden;
+}
+
+.visible-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.visible-text p {
+  padding-right: 5%;
+  padding-bottom: 2%;
+  font-size: 15px;
+  color: rgb(100, 100, 255);
+}
+
+.visible-text p:last-child {
+  color: rgb(255, 100, 100);
+}
+
+.calendar-button button {
+  width: 100%;
+  height: 100%;
+  padding: 5%;
+  font-size: 16px;
+  font-weight: bold;
+  border-left: none;
+  border-right: 2px solid rgb(70, 125, 155);
+  border-top: none;
+  border-bottom: 2px solid rgb(70, 125, 155);
+  background-color: white;
+  display: flex;
+  justify-content: left;
+  align-items: start;
+}
+
+.invisible-button {
+  font-size: 0;
+  pointer-events: none;
+}
+
+.red-button {
+  color: red;
+}
+
+.blue-button {
+  color: blue;
+}
+
+/* Detail Page---------------------------------- */
+
+
+/* Stat Page------------------------------------ */
