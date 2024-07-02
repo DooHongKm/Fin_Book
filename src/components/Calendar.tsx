@@ -1,7 +1,8 @@
 import React from 'react'
 import CalendarButton from './CalendarButton'
+import { CalendarProps } from '../types'
 
-const Calendar: React.FC = () => {
+const Calendar: React.FC<CalendarProps> = ({  }) => {
   return (
     <div className='calendar-container'>
       <div className='calendar-inner-container'>

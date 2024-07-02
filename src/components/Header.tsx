@@ -1,6 +1,9 @@
 import React from 'react'
+import { HeaderProps } from '../types'
 
-const Header: React.FC = () => {
+// userId ''면 동작 x
+
+const Header: React.FC<HeaderProps> = ({  }) => {
   return (
     <div className='header-container'>
       <button>Calendar</button>

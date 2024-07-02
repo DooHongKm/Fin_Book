@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { NavigateFunction, useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
+import Logo from '../images/Logo.svg';
+import { LoginProps } from '../types';
 
-interface LoginPageProps {
-  setUserId: React.Dispatch<React.SetStateAction<string>>
-}
-
-const LoginPage: React.FC<LoginPageProps> = ({ setUserId }) => {
+const LoginPage: React.FC<LoginProps> = ({ setUserId }) => {
 
   // input에 입력하며 id, pw 업데이트
   const [id, setId] = useState<string>('');
@@ -34,32 +33,36 @@ const LoginPage: React.FC<LoginPageProps> = ({ setUserId }) => {
 
   return (
     <div className='login-container'>
-      <div className='login-box-container'>
-        <form onSubmit={sendLoginInfo}>
-          <div className='login-input-container'>
-           <div className='login-input'>
-              <input 
-                type='text'
-                placeholder='ID'
-                value={id}
-                onChange={(e) => setId(e.target.value)}
-              />
-              <p className={idError ? 'login-input-text-error' : 'login-input-text'}>존재하지 않는 아이디입니다.</p>
+      <Header/>
+      <div className='login-body-container'>
+        <div className='login-box-container'>
+          <img src={Logo} alt="FinBook"/>
+          <form onSubmit={sendLoginInfo}>
+            <div className='login-input-container'>
+              <div className='login-input'>
+                <input 
+                  type='text'
+                  placeholder='ID'
+                  value={id}
+                  onChange={(e) => setId(e.target.value)}
+                />
+                <p className={idError ? 'login-input-text-error' : 'login-input-text'}>존재하지 않는 아이디입니다.</p>
+              </div>
+              <div className='login-input'>
+                <input 
+                  type='password'
+                  placeholder='PW'
+                  value={pw}
+                  onChange={(e) => setPw(e.target.value)}
+                />
+                <p className={pwError ? 'login-input-text-error' : 'login-input-text'}>잘못된 비밀번호입니다.</p>
+              </div>
             </div>
-            <div className='login-input'>
-              <input 
-                type='password'
-                placeholder='PW'
-                value={pw}
-                onChange={(e) => setPw(e.target.value)}
-              />
-              <p className={pwError ? 'login-input-text-error' : 'login-input-text'}>잘못된 비밀번호입니다.</p>
+            <div className='login-button-container'>
+              <button type='submit'>로그인</button>
             </div>
-          </div>
-          <div className='login-button'>
-            <button type='submit'>로그인</button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   )

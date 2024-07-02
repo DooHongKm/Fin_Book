@@ -1,11 +1,5 @@
 import React from 'react'
-
-// 버튼 속 내용은 DB 불러와서 text로 처리
-
-interface CalendarButtonProps {
-  date: number | null
-  day: number
-}
+import { CalendarButtonProps } from '../types'
 
 const CalendarButton: React.FC<CalendarButtonProps> = ({ date, day }) => {
 

@@ -1,6 +1,7 @@
 import React from 'react'
+import { StatProps } from '../types'
 
-const StatPage = () => {
+const StatPage: React.FC<StatProps> = ({ userId, yearMonth, setYearMonth }) => {
   return (
     <div>
       
