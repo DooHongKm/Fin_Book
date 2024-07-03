@@ -13,8 +13,8 @@ const LoginPage: React.FC = () => {
   const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
 
   const date: Date = new Date();
-  const year: number = date.getFullYear();
-  const month: number = date.getMonth() + 1;
+  const [year, setYear] = useState<number>(date.getFullYear());
+  const [month, setMonth] = useState<number>(date.getMonth() + 1);
 
   // 통신 필요
   const sendLoginInfo: () => void = () => {
@@ -22,7 +22,7 @@ const LoginPage: React.FC = () => {
     setPwError(false);
     setLoginSuccess(true);
   };
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const clickEvent = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     sendLoginInfo();
   };
@@ -40,7 +40,7 @@ const LoginPage: React.FC = () => {
       <div className='login-body-container'>
         <div className='login-box-container'>
           <img src={Logo} alt="FinBook"/>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={clickEvent}>
             <div className='login-input-container'>
               <div className='login-input'>
                 <input 

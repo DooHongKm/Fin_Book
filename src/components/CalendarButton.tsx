@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { NavigateFunction, useNavigate } from 'react-router-dom'
+import { CalendarButtonProps } from './Calendar'
 
-interface CalendarButtonProps {
-  date: number | null
-  day: number
-}
+const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, date, day }) => {
 
-const CalendarButton: React.FC<CalendarButtonProps> = ({ date, day }) => {
+  const [goDetail, setGoDetail] = useState<boolean>(false);
+
+  const navigateDetail: () => void = () => {
+    setGoDetail(true)
+  };
+  const clickEvent = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    navigateDetail();
+  };
+
+  const navigate: NavigateFunction = useNavigate();
+  useEffect(() => {
+    if (goDetail) {
+      navigate('/detail', { state: {userId: userId, year: year, month: month, date:date} });
+      setGoDetail(false);
+    }
+  }, [navigate, goDetail])
 
   return (
     <div className='calendar-button'>
