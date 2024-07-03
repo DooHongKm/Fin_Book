@@ -33,7 +33,7 @@ button:hover {
 /* Header -------------------------------------- */
 .header-container {
   width: 100%;
-  height: 8%;
+  height: 65px;
   background-color: rgb(55, 145, 230);
   display: flex;
   justify-content: center;
@@ -142,22 +142,16 @@ button:hover {
 }
 
 .login-button-container button {
-  width: 79px;
+  width: 82px;
   height: 79px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   color: white;
   background-color: rgba(110, 170, 230, 0.8);
   border: none;
+  font-size: 15px;
 }
 
-/* Main Page ----------------------------------- */
-.main-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
+/* Controller ---------------------------------- */
 .controller-container {
   width: 100%;
   height: 10%;
@@ -187,11 +181,14 @@ button:hover {
   background-color: rgb(50, 50, 50);
 }
 
-/* Main Page - Calendar ------------------------ */
+/* Calendar ------------------------------------ */
 .calendar-container {
   width: 100%;
   height: 100%;
-  padding: 10px;
+  padding-left: 4%;
+  padding-right: 4%;
+  padding-top: 1%;
+  padding-bottom: 3%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -208,7 +205,6 @@ button:hover {
   align-items: center;
 }
 
-/* Main Page - Calendar Button ----------------- */
 .calendar-button {
   position: relative;
   width: calc(100% / 7);
@@ -271,7 +267,35 @@ button:hover {
   color: blue;
 }
 
+/* Main Page ----------------------------------- */
+.main-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Detail Page---------------------------------- */
 
 
-/* Stat Page------------------------------------ */
+/* Graph --------------------------------------- */
+.graph-container {
+  width: 100%;
+  height: 100%;
+  padding-left: 4%;
+  padding-right: 4%;
+  padding-top: 1%;
+  padding-bottom: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Stat Page ----------------------------------- */
+.stat-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

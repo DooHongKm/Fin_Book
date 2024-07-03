@@ -1,5 +1,9 @@
 import React from 'react'
-import { CalendarButtonProps } from '../types'
+
+interface CalendarButtonProps {
+  date: number | null
+  day: number
+}
 
 const CalendarButton: React.FC<CalendarButtonProps> = ({ date, day }) => {
 

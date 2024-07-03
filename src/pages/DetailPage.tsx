@@ -1,7 +1,6 @@
 import React from 'react'
-import { DetailProps } from '../types'
 
-const DetailPage: React.FC<DetailProps> = ({ userId, yearMonth, date }) => {
+const DetailPage: React.FC = () => {
   return (
     <div>
       

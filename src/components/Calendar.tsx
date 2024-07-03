@@ -1,8 +1,12 @@
 import React from 'react'
 import CalendarButton from './CalendarButton'
-import { CalendarProps } from '../types'
+import { Info } from '../pages/MainPage';
 
-const Calendar: React.FC<CalendarProps> = ({  }) => {
+const Calendar: React.FC<Info> = ({ userId, year, month }) => {
+
+  const date: Date = new Date(year, month - 1, 1)
+  const day: number = date.getDay();
+
   return (
     <div className='calendar-container'>
       <div className='calendar-inner-container'>

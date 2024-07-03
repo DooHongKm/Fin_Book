@@ -1,43 +1,46 @@
 import React, { useState, useEffect } from 'react'
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
-import Logo from '../images/Logo.svg';
-import { LoginProps } from '../types';
+import Logo from "../images/Logo.svg"
 
-const LoginPage: React.FC<LoginProps> = ({ setUserId }) => {
+const LoginPage: React.FC = () => {
 
-  // input에 입력하며 id, pw 업데이트
   const [id, setId] = useState<string>('');
   const [pw, setPw] = useState<string>('');
 
-  // id, pw에 오류가 있는지 확인하고, 로그인 성공인지 아닌지를 판단
   const [idError, setIdError] = useState<boolean>(false);
   const [pwError, setPwError] = useState<boolean>(false);
   const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
 
-  // 로그인 버튼을 누르면 실행되어 id, pw를 DB와 비교하여 결과 반환
+  const date: Date = new Date();
+  const year: number = date.getFullYear();
+  const month: number = date.getMonth() + 1;
+
+  // 통신 필요
   const sendLoginInfo: () => void = () => {
     setIdError(false);
     setPwError(false);
     setLoginSuccess(true);
   };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    sendLoginInfo();
+  };
 
-  // loginSuccess가 true이면, 메인 페이지로 이동
   const navigate: NavigateFunction = useNavigate();
   useEffect(() => {
     if (loginSuccess) {
-      setUserId(id);
-      navigate('/main');
+      navigate('/main', { state: {userId: id, year: year, month: month} });
     }
-  }, [loginSuccess])
+  }, [id, year, month, navigate, loginSuccess])
 
   return (
     <div className='login-container'>
-      <Header/>
+      <Header works={false} userId={id} year={year} month={month}/>
       <div className='login-body-container'>
         <div className='login-box-container'>
           <img src={Logo} alt="FinBook"/>
-          <form onSubmit={sendLoginInfo}>
+          <form onSubmit={handleSubmit}>
             <div className='login-input-container'>
               <div className='login-input'>
                 <input 

@@ -1,7 +1,6 @@
 import React from 'react'
-import { PostingProps } from '../types'
 
-const PostingPage: React.FC<PostingProps> = ({ userId, yearMonth, date }) => {
+const PostingPage: React.FC = () => {
   return (
     <div>
       
