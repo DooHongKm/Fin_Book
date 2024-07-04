@@ -4,7 +4,7 @@ import Header from '../components/Header'
 import MainController from '../components/MainController'
 import Calendar from '../components/Calendar'
 
-export interface Info {
+export interface MainInfo {
   userId: string
   year: number
   month: number
@@ -13,7 +13,7 @@ export interface Info {
 const MainPage: React.FC = () => {
 
   const location = useLocation();
-  const { userId, year, month }: Info = location.state as Info;
+  const { userId, year, month }: MainInfo = location.state as MainInfo;
 
   const id: string = userId;
   const [y, setY] = useState<number>(year);

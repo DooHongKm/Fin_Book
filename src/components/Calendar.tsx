@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import CalendarButton from './CalendarButton'
-import { Info } from '../pages/MainPage'
+import { MainInfo } from '../pages/MainPage'
 
-export interface CalendarButtonProps extends Info {
+export interface CalendarButtonProps extends MainInfo {
   date: number | null
   day: number
 }
 
-const Calendar: React.FC<Info> = ({ userId, year, month }) => {
+const Calendar: React.FC<MainInfo> = ({ userId, year, month }) => {
 
   const [data, setData] = useState<CalendarButtonProps[]>([]); 
 
@@ -37,9 +37,7 @@ const Calendar: React.FC<Info> = ({ userId, year, month }) => {
       dayCount = (dayCount + 1) % 7
     }
 
-    console.log(newData)
     setData(newData);
-
   }, [year, month])
 
   return (

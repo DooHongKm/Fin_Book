@@ -33,7 +33,7 @@ button:hover {
 /* Header -------------------------------------- */
 .header-container {
   width: 100%;
-  height: 65px;
+  height: 60px;
   background-color: rgb(55, 145, 230);
   display: flex;
   justify-content: center;
@@ -41,7 +41,7 @@ button:hover {
 
 .header-container button {
   width: 150px;
-  height: 100%;
+  height: 60px;
   font-size: 16px;
   font-weight: bold;
   letter-spacing: 0.8px;
@@ -150,9 +150,8 @@ button:hover {
   border: none;
   font-size: 15px;
 }
-
-/* Controller ---------------------------------- */
-.controller-container {
+/* Main Controller ----------------------------- */
+.main-controller-container {
   width: 100%;
   height: 10%;
   display: flex;
@@ -160,7 +159,7 @@ button:hover {
   align-items: center;
 }
 
-.controller-container h1 {
+.main-controller-container h1 {
   width: 200px;
   margin-left: 20px;
   margin-right: 20px;
@@ -168,7 +167,7 @@ button:hover {
   text-align: center;
 }
 
-.controller-container button {
+.main-controller-container button {
   width: 30px;
   height: 30px;
   color: white;
@@ -179,7 +178,7 @@ button:hover {
   line-height: 12px;
 }
 
-.controller-container button:hover {
+.main-controller-container button:hover {
   background-color: rgb(50, 50, 50);
 }
 
@@ -277,8 +276,253 @@ button:hover {
   flex-direction: column;
 }
 
-/* Detail Page---------------------------------- */
+/* Detail Controller --------------------------- */
+.detail-controller-container {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.detail-controller-container h1 {
+  width: 280px;
+  margin-left: 20px;
+  margin-right: 20px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.detail-controller-container button {
+  width: 30px;
+  height: 30px;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 50%;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.detail-controller-container button:hover {
+  background-color: rgb(50, 50, 50);
+}
+
+/* List ---------------------------------------- */
+.list-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-inner-container {
+  width: 700px;
+  height: 100%;
+  margin-top: 1%;
+  margin-bottom: 5%;
+  border: 1.5px solid rgb(55, 145, 230);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.list-data-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* List Switch Button -------------------------- */
+.list-switch-container {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.list-switch-container button {
+  width: 350px;
+  height: 100%;
+  border: none;
+  border-bottom: 1.5px solid rgb(55, 145, 230);
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: rgba(40, 100, 150, 0.5);
+  background-color: white;
+}
+
+.list-switch-container button:hover {
+  background-color: rgba(55, 145, 230, 0.2);
+}
+
+.list-switch-container button:first-child {
+  border-right: 1.5px solid rgb(55, 145, 230);
+}
+
+.list-switch-container button.switch-clicked {
+  color: rgb(40, 100, 150);
+  background-color: rgba(55, 145, 230, 0.2);
+}
+
+/* List Button --------------------------------- */
+.list-button-container {
+  width: 700px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list-text {
+  position: absolute;
+  width: 700px;
+  height: 70px;
+  display: flex;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.list-text p {
+  width: 120px;
+  height: 70px;
+  color: rgb(40, 100, 150);
+  font-size: 17px;
+  line-height: 70px;
+  text-align: center;
+}
+
+.list-text p:nth-child(2) {
+  width: 440px;
+  font-size: 16px;
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-left: 1px solid rgb(55, 145, 230);
+}
+
+.list-text p:last-child {
+  width: 140px;
+  padding-right: 20px;
+  font-size: 16px;
+  text-align: right;
+}
+
+.list-button-container button {
+  position: relative;
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  border: none;
+  border-bottom: 1.5px solid rgb(55, 145, 230);
+  z-index: 1;
+}
+
+.list-button-container button.selected-list {
+  background-color: rgba(55, 145, 230, 0.1);
+}
+
+/* List Edit form ------------------------------ */
+.list-form {
+  width: 100%;
+  height: 70px;
+  padding: 20px;
+  padding-bottom: 0;
+  border-top: 1.5px solid rgb(55, 145, 230);
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-input {
+  width: 30%;
+  height: 25px;
+  display: flex;
+  justify-content: left;
+}
+
+.list-input p {
+  height: 100%;
+  color: rgb(40, 100, 150);
+  font-size: 15px;
+}
+
+.list-input input {
+  width: 100%;
+  height: 100%;
+  margin-left: 8px;
+  border: 1px solid rgb(55, 145, 230);
+}
+
+.list-form-button-container {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: right;
+  padding-right: 20px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.list-form-button-container button {
+  width: 60px;
+  height: 30px;
+  margin-left: 15px;
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(40, 100, 150);
+  background-color: white;
+  border: 1px solid rgb(55, 145, 230);
+  border-radius: 5px;
+}
+
+.list-form-button-container button:hover {
+  background-color: rgba(55, 145, 230, 0.2);
+}
+
+/* List Edit Button ---------------------------- */
+.list-edit-container {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 5%;
+  display: flex;
+  justify-content: center;
+}
+
+.list-edit-container button {
+  width: 120px;
+  height: 100%;
+  margin-right: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.8px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: rgb(55, 145, 230, 0.9);
+}
+
+.list-edit-container button:hover {
+  background-color: rgb(110, 170, 230);
+}
+
+.list-edit-container button:last-child {
+  margin-right: 0;
+}
+
+/* Detail Page---------------------------------- */
+.detail-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
 /* Graph --------------------------------------- */
 .graph-container {

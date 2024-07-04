@@ -3,12 +3,12 @@ import { useLocation } from 'react-router-dom'
 import Header from '../components/Header'
 import MainController from '../components/MainController'
 import Graph from '../components/Graph'
-import { Info } from './MainPage'
+import { MainInfo } from './MainPage'
 
 const StatPage: React.FC = () => {
 
   const location = useLocation();
-  const { userId, year, month }: Info = location.state as Info;
+  const { userId, year, month }: MainInfo = location.state as MainInfo;
 
   const id: string = userId;
   const [y, setY] = useState<number>(year);

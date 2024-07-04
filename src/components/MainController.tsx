@@ -1,13 +1,13 @@
 import React from 'react'
 
-interface ControllerProps {
+export interface MainControllerProps {
   year: number;
   setYear: React.Dispatch<React.SetStateAction<number>>;
   month: number;
   setMonth: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const MainController: React.FC<ControllerProps> = ({ year, setYear, month, setMonth }) => {
+const MainController: React.FC<MainControllerProps> = ({ year, setYear, month, setMonth }) => {
 
   const prevMonth: () => void = () => {
     if (month === 1) {
@@ -28,7 +28,7 @@ const MainController: React.FC<ControllerProps> = ({ year, setYear, month, setMo
   }
 
   return (
-    <div className='controller-container'>
+    <div className='main-controller-container'>
       <button onClick={prevMonth}>◀</button>
       <h1>{year}년 {month}월</h1>
       <button onClick={nextMonth}>▶</button>

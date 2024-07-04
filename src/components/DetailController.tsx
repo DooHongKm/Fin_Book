@@ -1,37 +1,32 @@
 import React from 'react'
+import { MainControllerProps } from './MainController';
 
-interface ControllerProps {
-  year: number;
-  setYear: React.Dispatch<React.SetStateAction<number>>;
-  month: number;
-  setMonth: React.Dispatch<React.SetStateAction<number>>;
+interface DetailControllerProps extends MainControllerProps {
+  date: number;
+  setDate: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const DetailController: React.FC<ControllerProps> = ({ year, setYear, month, setMonth }) => {
+const DetailController: React.FC<DetailControllerProps> = ({ year, setYear, month, setMonth, date, setDate }) => {
 
-  const prevMonth: () => void = () => {
-    if (month === 1) {
-      setYear(prevState => prevState - 1)
-      setMonth(12)
-    } else {
-      setMonth(prevState => prevState - 1)
-    }
+  const prevDate: () => void = () => {
+    const prevD: Date = new Date(year, month - 1, date - 1)
+    setYear(prevD.getFullYear());
+    setMonth(prevD.getMonth() + 1);
+    setDate(prevD.getDate());
   }
 
-  const nextMonth: () => void = () => {
-    if (month === 12) {
-      setYear(prevState => prevState + 1)
-      setMonth(1)
-    } else {
-      setMonth(prevState => prevState + 1)
-    }
+  const nextDate: () => void = () => {
+    const nextD: Date = new Date(year, month - 1, date + 1)
+    setYear(nextD.getFullYear());
+    setMonth(nextD.getMonth() + 1);
+    setDate(nextD.getDate());
   }
 
   return (
-    <div className='controller-container'>
-      <button onClick={prevMonth}>◀</button>
-      <h1>{year}년 {month}월</h1>
-      <button onClick={nextMonth}>▶</button>
+    <div className='detail-controller-container'>
+      <button onClick={prevDate}>◀</button>
+      <h1>{year}년 {month}월 {date}일</h1>
+      <button onClick={nextDate}>▶</button>
     </div>
   )
 }

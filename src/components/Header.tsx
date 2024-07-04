@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { NavigateFunction, useNavigate } from 'react-router-dom'
-import { Info } from '../pages/MainPage'
+import { MainInfo } from '../pages/MainPage'
 
-interface HeaderProps extends Info {
+interface HeaderProps extends MainInfo {
   works: boolean
 }
 

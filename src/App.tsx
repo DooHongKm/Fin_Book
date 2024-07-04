@@ -4,7 +4,6 @@ import LoginPage from './pages/LoginPage'
 import MainPage from './pages/MainPage'
 import DetailPage from './pages/DetailPage'
 import StatPage from './pages/StatPage'
-import PostingPage from './pages/PostingPage'
 
 const App: React.FC = () => {
   return (
@@ -14,7 +13,6 @@ const App: React.FC = () => {
           <Route path="/" element={<LoginPage/>}/>
           <Route path="/main" element={<MainPage/>}/>
           <Route path="/detail" element={<DetailPage/>}/>
-          <Route path="/posting" element={<PostingPage/>}/>
           <Route path="/stat" element={<StatPage/>}/>
         </Routes>
       </Router>

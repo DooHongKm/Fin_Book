@@ -9,8 +9,7 @@ const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, da
   const navigateDetail: () => void = () => {
     setGoDetail(true)
   };
-  const clickEvent = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const clickEvent = () => {
     navigateDetail();
   };
 
@@ -34,10 +33,10 @@ const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, da
       {date === null ? 
         <button className='invisible-button'>{date}</button> :
         (day === 0 ?
-          <button className='red-button'>{date}</button> :
+          <button className='red-button' onClick={clickEvent}>{date}</button> :
           (day === 6 ?
-            <button className='blue-button'>{date}</button> :
-            <button>{date}</button>
+            <button className='blue-button' onClick={clickEvent}>{date}</button> :
+            <button onClick={clickEvent}>{date}</button>
           )
         )
       }
