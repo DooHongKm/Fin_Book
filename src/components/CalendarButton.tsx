@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { NavigateFunction, useNavigate } from 'react-router-dom'
 import { db } from '../database/firebase'
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
+import { collection, doc, getDocs } from 'firebase/firestore'
 import { CalendarButtonProps } from './Calendar'
-import { DataType } from '../database/DBType'
 
 const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, date, day }) => {
 
