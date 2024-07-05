@@ -165,23 +165,25 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, switchNum, setSw
             />
           ))}
         </div>
-        <form className='list-form'>
-          <div className='list-input'>
-            <p>Category</p>
-            <input></input>
+        <div className='hidden-form'>
+          <form className='list-form'>
+            <div className='list-input'>
+              <p>Category</p>
+              <input></input>
+            </div>
+            <div className='list-input'>
+              <p>Memo</p>
+              <input></input>
+            </div>
+            <div className='list-input'>
+              <p>Amount</p>
+              <input></input>
+            </div>
+          </form>
+          <div className='list-form-button-container'>
+            <button>Cancel</button>
+          <button>Save</button>
           </div>
-          <div className='list-input'>
-            <p>Memo</p>
-            <input></input>
-          </div>
-          <div className='list-input'>
-            <p>Amount</p>
-            <input></input>
-          </div>
-        </form>
-        <div className='list-form-button-container'>
-          <button>Cancel</button>
-         <button>Save</button>
         </div>
       </div>
 
