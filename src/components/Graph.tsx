@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ResponsivePie } from '@nivo/pie'
 import { MainInfo } from '../pages/MainPage'
-import { DataType } from './List'
+import { DataType } from '../database/DBType'
 
 interface GraphProps extends MainInfo {}
 

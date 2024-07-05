@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import ListButton from './ListButton'
 import { DetailInfo } from '../pages/DetailPage'
+import { DataType } from '../database/DBType'
 
 export interface ListProps extends DetailInfo {
   switchNum: number
   setSwitchNum: React.Dispatch<React.SetStateAction<number>>
   listIndex: number
   setListIndex: React.Dispatch<React.SetStateAction<number>>
-}
-
-export interface DataType {
-  index: number
-  date: string
-  cost: boolean
-  category: string
-  amount: number
-  memo: string
 }
 
 const List: React.FC<ListProps> = ({ userId, year, month, date, switchNum, setSwitchNum, listIndex, setListIndex }) => {

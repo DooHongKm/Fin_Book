@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { db } from '../database/firebase'
+import { doc, getDoc } from 'firebase/firestore'
 import Header from '../components/Header';
 import Logo from "../images/Logo.svg"
+import { UserType, DataType } from '../database/DBType';
 
 const LoginPage: React.FC = () => {
 
@@ -16,12 +19,33 @@ const LoginPage: React.FC = () => {
   const [year, setYear] = useState<number>(date.getFullYear());
   const [month, setMonth] = useState<number>(date.getMonth() + 1);
 
-  // 통신 필요
   const sendLoginInfo: () => void = () => {
-    setIdError(false);
-    setPwError(false);
-    setLoginSuccess(true);
-  };
+    const fetchData = async () => {
+      try {
+        const docRef = doc(db, "users", id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data: UserType = docSnap.data() as UserType
+          if (data.pw !== pw) {
+            setIdError(false);
+            setPwError(true);
+            setLoginSuccess(false);
+          } else {
+            setIdError(false);
+            setPwError(false);
+            setLoginSuccess(true);
+          }
+        } else {
+          setIdError(true);
+          setPwError(false);
+          setLoginSuccess(false);
+        }
+      } catch (error) {
+        console.error("DB Connecting Fail", error);
+      }
+    };
+    fetchData();
+  }
   const clickEvent = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     sendLoginInfo();
