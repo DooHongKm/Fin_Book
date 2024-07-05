@@ -234,10 +234,14 @@ button:hover {
   padding-right: 5%;
   padding-bottom: 2%;
   font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
+.visible-text p.blue-visible-text {
   color: rgb(100, 100, 255);
 }
 
-.visible-text p:last-child {
+.visible-text p.red-visible-text {
   color: rgb(255, 100, 100);
 }
 
