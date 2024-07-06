@@ -11,16 +11,15 @@ const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, da
   
   const [goDetail, setGoDetail] = useState<boolean>(false);
 
-  const navigateDetail: () => void = () => {
-    setGoDetail(true)
-  };
   const clickEvent = () => {
-    navigateDetail();
+    setGoDetail(true)
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setTotalCost(0);
+        setTotalIncome(0);
         const dateString = `${year}${String(month).padStart(2, '0')}${String(date).padStart(2, '0')}`;
         const docsRef = collection(doc(db, "users", userId), dateString);
         const docsSnap = await getDocs(docsRef);
@@ -38,7 +37,7 @@ const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, da
       }
     };
     fetchData();
-  }, [])
+  }, [year, month])
 
   const navigate: NavigateFunction = useNavigate();
   useEffect(() => {
