@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { ListButtonProps } from '../database/DBType';
 
 const ListButton: React.FC<ListButtonProps> = ({ index, cost, category, amount, memo, selectedIndex, setSelectedIndex }) => {
