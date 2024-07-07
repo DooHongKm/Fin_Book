@@ -73,7 +73,7 @@ const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
       }
     };
     fetchData();
-  }, [year, month])
+  }, [userId, year, month])
 
   useEffect(() => {
     setTotalCost(costData.reduce((acc, item) => acc + item.value, 0));

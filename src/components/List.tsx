@@ -61,7 +61,7 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
   }
   const clickDelete = () => {
     if (!addMode && !editMode && listIndex !== 0) {
-      const newData = data.filter(item => item.index != listIndex)
+      const newData = data.filter(item => item.index !== listIndex)
       setData(newData);
     }
     const deleteDB = async () => {
@@ -103,7 +103,7 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
       }
       addDB();
     } else if (editMode === true) {
-      let newData = data.filter(item => item.index != listIndex)
+      let newData = data.filter(item => item.index !== listIndex)
       const newItem = {
         index: listIndex,
         date: `${year}${String(month).padStart(2, '0')}${String(date).padStart(2, '0')}`,
@@ -163,7 +163,7 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
       }
     };
     fetchData();
-  }, [year, month, date])
+  }, [userId, year, month, date, dateString])
 
   return (
     <div className='list-container'>

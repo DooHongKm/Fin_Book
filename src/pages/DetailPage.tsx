@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import DetailController from '../components/DetailController';
@@ -7,14 +7,6 @@ import { MainInfo } from './MainPage';
 
 export interface DetailInfo extends MainInfo {
   date: number
-}
-
-interface costInfo {
-  date: string
-  cost: boolean
-  category: string
-  amount: number
-  memo: string
 }
 
 const DetailPage: React.FC = () => {

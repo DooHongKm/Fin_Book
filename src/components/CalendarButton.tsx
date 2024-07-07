@@ -37,7 +37,7 @@ const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, da
       }
     };
     fetchData();
-  }, [year, month])
+  }, [userId, year, month, date])
 
   const navigate: NavigateFunction = useNavigate();
   useEffect(() => {
@@ -45,7 +45,7 @@ const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, da
       navigate('/detail', { state: {userId: userId, year: year, month: month, date:date} });
       setGoDetail(false);
     }
-  }, [navigate, goDetail])
+  }, [navigate, userId, year, month, date, goDetail])
 
   return (
     <div className='calendar-button'>
