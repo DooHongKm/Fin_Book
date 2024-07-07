@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from 'react'
-
-interface ListButtonProps {
-  key: number
-  index: number
-  cost: boolean
-  category: string
-  amount: number
-  memo: string
-  selectedIndex: number
-  setSelectedIndex: React.Dispatch<React.SetStateAction<number>>
-}
+import { ListButtonProps } from '../database/DBType';
 
 const ListButton: React.FC<ListButtonProps> = ({ key, index, cost, category, amount, memo, selectedIndex, setSelectedIndex }) => {
 
+  // 지출/수입에 따라 금액 앞에 부호를 붙여 표현한 변수
   let sign: string = (!cost ? '+ ' : '- ');
   const money: string = amount.toLocaleString();
 
+  // 목록 버튼에 대한 클릭 함수
   const clickEvent = () => {
     setSelectedIndex(index);
   }

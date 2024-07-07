@@ -2,19 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { NavigateFunction, useNavigate } from 'react-router-dom'
 import { db } from '../database/firebase'
 import { collection, doc, getDocs } from 'firebase/firestore'
-import { CalendarButtonProps } from './Calendar'
+import { CalendarButtonProps } from '../database/DBType'
 
 const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, date, day }) => {
 
+  // 해당 날짜의 총 지출 및 수입 금액을 저장하는 state
   const [totalCost, setTotalCost] = useState<number>(0);
   const [totalIncome, setTotalIncome] = useState<number>(0);
-  
-  const [goDetail, setGoDetail] = useState<boolean>(false);
 
-  const clickEvent = () => {
-    setGoDetail(true)
-  };
-
+  // firebase의 DB 데이터를 가져와서 지출/수입으로 분류하여 총 금액을 계산
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,6 +35,11 @@ const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, da
     fetchData();
   }, [userId, year, month, date])
 
+  // 달력의 날짜를 클릭하면 detail page로 이동
+  const [goDetail, setGoDetail] = useState<boolean>(false);
+  const clickEvent = () => {
+    setGoDetail(true)
+  };
   const navigate: NavigateFunction = useNavigate();
   useEffect(() => {
     if (goDetail) {

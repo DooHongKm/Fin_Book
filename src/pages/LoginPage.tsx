@@ -4,21 +4,25 @@ import { db } from '../database/firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import Header from '../components/Header';
 import Logo from "../images/Logo.svg"
-import { UserType, DataType } from '../database/DBType';
+import { UserType } from '../database/DBType';
 
 const LoginPage: React.FC = () => {
 
+  // 사용자에게 id, pw를 입력받아 저장하는 state
   const [id, setId] = useState<string>('');
   const [pw, setPw] = useState<string>('');
 
+  // id와 pw가 유효한지 판단하는 state
   const [idError, setIdError] = useState<boolean>(false);
   const [pwError, setPwError] = useState<boolean>(false);
   const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
 
+  // 현재 시각을 기준으로 몇 년, 몇 월인지 저장하는 변수
   const date: Date = new Date();
-  const [year, setYear] = useState<number>(date.getFullYear());
-  const [month, setMonth] = useState<number>(date.getMonth() + 1);
+  const year: number = date.getFullYear();
+  const month: number = date.getMonth() + 1;
 
+  // 사용자에게 입력받은 id와 pw를 DB의 사용자 정보와 비교하는 함수
   const sendLoginInfo: () => void = () => {
     const fetchData = async () => {
       try {
@@ -51,6 +55,7 @@ const LoginPage: React.FC = () => {
     sendLoginInfo();
   };
 
+  // 로그인 정보가 일치하면 main page로 이동
   const navigate: NavigateFunction = useNavigate();
   useEffect(() => {
     if (loginSuccess) {

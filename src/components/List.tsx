@@ -2,37 +2,36 @@ import React, { useState, useEffect } from 'react'
 import { db } from '../database/firebase'
 import { collection, doc, setDoc, deleteDoc, updateDoc, getDocs, DocumentData } from 'firebase/firestore'
 import ListButton from './ListButton'
-import { DetailInfo } from '../pages/DetailPage'
-import { DataType } from '../database/DBType'
-
-export interface ListProps extends DetailInfo {
-  showCost: boolean
-  setShowCost: React.Dispatch<React.SetStateAction<boolean>>
-}
+import { ListProps, DataType } from '../database/DBType'
 
 const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setShowCost }) => {
 
+  // 해당 날짜를 yyyymmdd 형태로 변환하여 저장한 변수
   const dateString: string = `${year}${String(month).padStart(2, '0')}${String(date).padStart(2, '0')}`
 
+  // 선택한 목록의 index를 저장하는 state
   const [listIndex, setListIndex] = useState<number>(0);
 
+  // 지출/수입 목록 및 세부 정보를 가지고 있는 데이터
   const [data, setData] = useState<DataType[]>([]);
 
+  // 추가/수정 시에 입력받는 정보를 저장하는 state
   const [category, setCategory] = useState<string>('');
   const [memo, setMemo] = useState<string>('');
   const [amountStr, setAmountStr] = useState<string>('');
   const [amount, setAmount] = useState<number>(0);
-
   useEffect(() => {
     setAmount(Number(amountStr));
   }, [amountStr])
 
-  // 폼을 띄울 것인지 확인
+  // 입력 폼을 띄울 것인지 확인하는 state
   const [displayForm, setDisplayForm] = useState<boolean>(false);
   
+  // 지출/수입 정보를 추가할 것인지 수정할 것인지 판단하는 state
   const [addMode, setAddMode] = useState<boolean>(false);
   const [editMode, setEditMode] = useState<boolean>(false);
 
+  // cost 버튼과 income 버튼에 대한 클릭 함수
   const clickCost = () => {
     setShowCost(true);
     setListIndex(0);
@@ -42,6 +41,7 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
     setListIndex(0);
   }
 
+  // add 버튼, edit 버튼, delete 버튼에 대한 클릭 함수
   const clickAdd = () => {
     if (!editMode) {
       setListIndex(0);
@@ -75,6 +75,8 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
     deleteDB();
     setListIndex(0);
   }
+
+  // save 버튼과 cancel 버튼에 대한 클릭 함수
   const clickSave = () => {
     if (addMode === true) {
       let newData = data;
@@ -146,6 +148,7 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
     setDisplayForm(false);
   }
 
+  // firebase의 DB 데이터를 가져와서 지출/수입으로 분류하여 따로 페이지에 표시
   useEffect(() => {
     const fetchData = async () => {
       let newData: DataType[] = [];
@@ -205,7 +208,6 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
               />
             )))
           }
-          
         </div>
         <div className={displayForm ? '' : 'hidden-form'}>
           <form className='list-form'>

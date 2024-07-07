@@ -1,13 +1,9 @@
 import React from 'react'
-import { MainControllerProps } from './MainController';
-
-interface DetailControllerProps extends MainControllerProps {
-  date: number;
-  setDate: React.Dispatch<React.SetStateAction<number>>;
-}
+import { DetailControllerProps } from '../database/DBType'
 
 const DetailController: React.FC<DetailControllerProps> = ({ year, setYear, month, setMonth, date, setDate }) => {
 
+  // 이전 날짜 이동 버튼
   const prevDate: () => void = () => {
     const prevD: Date = new Date(year, month - 1, date - 1)
     setYear(prevD.getFullYear());
@@ -15,6 +11,7 @@ const DetailController: React.FC<DetailControllerProps> = ({ year, setYear, mont
     setDate(prevD.getDate());
   }
 
+  // 다음 날짜 이동 버튼
   const nextDate: () => void = () => {
     const nextD: Date = new Date(year, month - 1, date + 1)
     setYear(nextD.getFullYear());

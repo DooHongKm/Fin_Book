@@ -1,14 +1,9 @@
 import React from 'react'
-
-export interface MainControllerProps {
-  year: number;
-  setYear: React.Dispatch<React.SetStateAction<number>>;
-  month: number;
-  setMonth: React.Dispatch<React.SetStateAction<number>>;
-}
+import { MainControllerProps } from '../database/DBType'
 
 const MainController: React.FC<MainControllerProps> = ({ year, setYear, month, setMonth }) => {
 
+  // 이전 달 이동 버튼
   const prevMonth: () => void = () => {
     if (month === 1) {
       setYear(prevState => prevState - 1)
@@ -18,6 +13,7 @@ const MainController: React.FC<MainControllerProps> = ({ year, setYear, month, s
     }
   }
 
+  // 다음 달 이동 버튼
   const nextMonth: () => void = () => {
     if (month === 12) {
       setYear(prevState => prevState + 1)

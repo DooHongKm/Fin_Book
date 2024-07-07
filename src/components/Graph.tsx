@@ -2,23 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { ResponsivePie } from '@nivo/pie'
 import { db } from '../database/firebase'
 import { collection, doc, getDocs } from 'firebase/firestore'
-import { MainInfo } from '../pages/MainPage'
-import { DataType } from '../database/DBType'
-
-interface GraphProps extends MainInfo {}
-
-interface NivoType {
-  id: string
-  label: string
-  value: number,
-  color: string
-}
+import { GraphProps, DataType, NivoType } from '../database/DBType'
 
 const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
 
+  // 지출/수입을 구분하는 버튼이 눌렸는지 판단하는 state
   const [costButton, setCostButton] = useState<boolean>(true);
-  const [loading, setLoading] = useState<boolean>(false);
-
+  
+  // cost 버튼과 income 버튼에 대한 클릭 함수
   const clickCost = () => {
     setCostButton(true);
   }
@@ -26,12 +17,18 @@ const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
     setCostButton(false);
   }
 
+  // 그래프를 로딩하고 있는 중인지 판단하는 state
+  const [loading, setLoading] = useState<boolean>(false);
+
+  // 지출 데이터와 수입 데이터를 그래프 input 타입으로 변환하여 저장하는 state
   const [costData, setCostData] = useState<NivoType[]>([]);
   const [incomeData, setIncomeData] = useState<NivoType[]>([]);
 
+  // 지출/수입 데이터를 분석하여 해당 달의 총 지출/수입 금액을 저장하는 state
   const [totalCost, setTotalCost] = useState<number>(0);
   const [totalIncome, setTotalIncome] = useState<number>(0);
 
+  // 그래프 input 타입으로 변화하는 함수
   const transformData = (data: DataType[]): NivoType[] => {
     const groupedData = data.reduce((acc, item) => {
       if (!acc[item.category]) {
@@ -48,6 +45,7 @@ const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
     }));
   };
 
+  // firebase의 DB 데이터를 가져와서 지출/수입으로 분류하여 따로 페이지에 표시
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -74,7 +72,6 @@ const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
     };
     fetchData();
   }, [userId, year, month])
-
   useEffect(() => {
     setTotalCost(costData.reduce((acc, item) => acc + item.value, 0));
     setTotalIncome(incomeData.reduce((acc, item) => acc + item.value, 0));
