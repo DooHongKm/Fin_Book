@@ -399,7 +399,7 @@ button:hover {
 }
 
 .list-text p {
-  width: 120px;
+  width: 150px;
   height: 70px;
   color: rgb(40, 100, 150);
   font-size: 17px;
@@ -465,6 +465,7 @@ button:hover {
   width: 100%;
   height: 100%;
   margin-left: 8px;
+  padding-left: 5px;
   border: 1px solid rgb(55, 145, 230);
 }
 

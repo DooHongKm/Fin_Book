@@ -54,8 +54,8 @@ const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
       let data: DataType[] = [];
       try {
         const lastDate = new Date(year, month, 0).getDate();
-        for (let day = 1; day <= lastDate; day++) {
-          const dateString = `${year}${String(month).padStart(2, '0')}${String(day).padStart(2, '0')}`
+        for (let date = 1; date <= lastDate; date++) {
+          const dateString = `${year}${String(month).padStart(2, '0')}${String(date).padStart(2, '0')}`
           const docsRef = collection(doc(db, "users", userId), dateString);
           const docsSnap = await getDocs(docsRef);
           if (!docsSnap.empty) {

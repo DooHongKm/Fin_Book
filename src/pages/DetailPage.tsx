@@ -27,18 +27,13 @@ const DetailPage: React.FC = () => {
   const [d, setD] = useState<number>(date)
 
   // 초기값은 0, 지출 클릭하면 1, 수입 클릭하면 2
-  const [switchNum, setSwitchNum] = useState<number>(0);
-
-  // 선택한 리스트의 index를 저장
-  const [listIndex, setListIndex] = useState<number>(0);
-
-  console.log(listIndex);
+  const [showCost, setShowCost] = useState<boolean>(true);
 
   return (
     <div className='detail-container'>
       <Header works={true} userId={userId} year={y} month={m}/>
       <DetailController year={y} setYear={setY} month={m} setMonth={setM} date={d} setDate={setD}/>
-      <List userId={userId} year={y} month={m} date={d} switchNum={switchNum} setSwitchNum={setSwitchNum} listIndex={listIndex} setListIndex={setListIndex}/>
+      <List userId={userId} year={y} month={m} date={d} showCost={showCost} setShowCost={setShowCost}/>
     </div>
   )
 }
