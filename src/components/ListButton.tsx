@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { ListButtonProps } from '../database/DBType';
 
-const ListButton: React.FC<ListButtonProps> = ({ key, index, cost, category, amount, memo, selectedIndex, setSelectedIndex }) => {
+const ListButton: React.FC<ListButtonProps> = ({ index, cost, category, amount, memo, selectedIndex, setSelectedIndex }) => {
 
   // 지출/수입에 따라 금액 앞에 부호를 붙여 표현한 변수
   let sign: string = (!cost ? '+ ' : '- ');
