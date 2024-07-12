@@ -1,4 +1,9 @@
 /* Common -------------------------------------- */
+@font-face {
+  font-family: 'kDotum';
+  src: url('./fonts/KoPubWorld Dotum Light.ttf') format('truetype');
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -10,6 +15,7 @@ body {
   height: 100vh;
   background: white;
   overflow: hidden;
+  font-family: 'kDotum';
 }
 
 body::-webkit-scrollbar {
@@ -162,7 +168,7 @@ button:hover {
 .main-controller-container h1 {
   width: 200px;
   height: 80px;
-  line-height: 78px;
+  line-height: 83px;
   margin-left: 20px;
   margin-right: 20px;
   letter-spacing: 1px;
@@ -294,7 +300,7 @@ button:hover {
 .detail-controller-container h1 {
   width: 280px;
   height: 80px;
-  line-height: 78px;
+  line-height: 83px;
   margin-left: 20px;
   margin-right: 20px;
   letter-spacing: 1px;

@@ -54,11 +54,11 @@ const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, da
         <p className='invisible-text'/> :
           <div className='visible-text'>
             {totalIncome !== 0 ?
-              <p className='blue-visible-text'>{totalIncome}</p> :
+              <p className='blue-visible-text'>{totalIncome.toLocaleString()}</p> :
               <p className='invisible-text'/>
             }
             {totalCost !== 0 ?
-              <p className='red-visible-text'>{totalCost}</p> :
+              <p className='red-visible-text'>{totalCost.toLocaleString()}</p> :
               <p className='invisible-text'/>
             }
           </div>
