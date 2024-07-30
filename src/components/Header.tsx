@@ -1,8 +1,7 @@
 // import
-import React, { useState, useEffect } from 'react'
-import { NavigateFunction, useNavigate } from 'react-router-dom'
-
-import '../styles/Header.css'
+import React, { useState, useEffect } from 'react';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
+import '../styles/Header.css';
 
 // header component
 const Header: React.FC<{ works: boolean }> = ({ works }) => {
@@ -25,6 +24,8 @@ const Header: React.FC<{ works: boolean }> = ({ works }) => {
     } else if (works && goStat) {
       navigate('/stat');
     }
+    setGoMain(false);
+    setGoStat(false);
   }, [navigate, works, goMain, goStat]);
 
   // return
@@ -37,4 +38,4 @@ const Header: React.FC<{ works: boolean }> = ({ works }) => {
 }
 
 // export
-export default Header
+export default Header;

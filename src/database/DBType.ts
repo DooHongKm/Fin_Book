@@ -46,7 +46,7 @@ export interface MainControllerProps {
 export interface CalendarProps extends MainInfo {}
 
 // Props (calendar button)
-export interface CalendarButtonProps extends MainInfo {
+export interface CalendarButtonProps {
   date: number | null;
   day: number;
 }

@@ -61,6 +61,8 @@ const LoginPage: React.FC = () => {
   useEffect(() => {
     if (loginSuccess) {
       navigate('/main');
+      setLoginSuccess(false);
+      dispatch(setPw(''));
     }
   }, [navigate, loginSuccess]);
 
@@ -103,4 +105,4 @@ const LoginPage: React.FC = () => {
 }
 
 // export
-export default LoginPage
+export default LoginPage;

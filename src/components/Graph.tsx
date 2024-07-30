@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { ResponsivePie } from '@nivo/pie'
-import { db } from '../database/firebase'
-import { collection, doc, getDocs } from 'firebase/firestore'
-import { GraphProps, DataType, NivoType } from '../database/DBType'
-import '../styles/Graph.css'
+import React, { useEffect, useState } from 'react';
+import { ResponsivePie } from '@nivo/pie';
+import { db } from '../database/firebase';
+import { collection, doc, getDocs } from 'firebase/firestore';
+import { GraphProps, DataType, NivoType } from '../database/DBType';
+import '../styles/Graph.css';
 
 const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
 
@@ -59,7 +59,7 @@ const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
           const docsSnap = await getDocs(docsRef);
           if (!docsSnap.empty) {
             docsSnap.forEach((doc) => {
-              data.push({index: doc.data().index, date: doc.data().date, cost: doc.data().cost, category: doc.data().category, amount: doc.data().amount, memo: doc.data().memo})
+              data.push({index: doc.data().index, date: doc.data().date, cost: doc.data().cost, category: doc.data().category, amount: doc.data().amount, memo: doc.data().memo});
             })
           }
         }
@@ -72,11 +72,11 @@ const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
       }
     };
     fetchData();
-  }, [userId, year, month])
+  }, [userId, year, month]);
   useEffect(() => {
     setTotalCost(costData.reduce((acc, item) => acc + item.value, 0));
     setTotalIncome(incomeData.reduce((acc, item) => acc + item.value, 0));
-  }, [costData, incomeData])
+  }, [costData, incomeData]);
 
   return (
     <div className='graph-container'>
@@ -152,4 +152,4 @@ const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
   )
 }
 
-export default Graph
+export default Graph;

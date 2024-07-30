@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { ListButtonProps } from '../database/DBType';
-import '../styles/ListButton.css'
+import '../styles/ListButton.css';
 
 const ListButton: React.FC<ListButtonProps> = ({ index, cost, category, amount, memo, selectedIndex }) => {
 
@@ -28,4 +28,4 @@ const ListButton: React.FC<ListButtonProps> = ({ index, cost, category, amount, 
   )
 }
 
-export default ListButton
+export default ListButton;

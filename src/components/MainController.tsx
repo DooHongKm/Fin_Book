@@ -1,11 +1,11 @@
 // import
-import React from 'react'
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 import { Dispatch } from '@reduxjs/toolkit';
-import { incValue as increaseYear, decValue as decreaseYear } from '../redux/year'
-import { incValue as increaseMonth, decValue as decreaseMonth, setValue as setMonth } from '../redux/month'
-import '../styles/MainController.css'
+import { incValue as increaseYear, decValue as decreaseYear } from '../redux/year';
+import { incValue as increaseMonth, decValue as decreaseMonth, setValue as setMonth } from '../redux/month';
+import '../styles/MainController.css';
 
 // main controller component
 const MainController: React.FC = () => {
@@ -23,7 +23,7 @@ const MainController: React.FC = () => {
     } else {
       dispatch(decreaseMonth({}));
     }
-  }
+  };
 
   // next button click event
   const nextMonth = () => {
@@ -33,7 +33,7 @@ const MainController: React.FC = () => {
     } else {
       dispatch(increaseMonth({}));
     }
-  }
+  };
 
   // return
   return (
@@ -46,4 +46,4 @@ const MainController: React.FC = () => {
 }
 
 // export
-export default MainController
+export default MainController;

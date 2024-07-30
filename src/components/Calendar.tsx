@@ -1,18 +1,18 @@
 // import
-import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { RootState } from '../redux/store'
-import CalendarButton from './CalendarButton'
-import { CalendarButtonProps } from '../database/DBType'
-import '../styles/Calendar.css'
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import CalendarButton from './CalendarButton';
+import { CalendarButtonProps } from '../database/DBType';
+import '../styles/Calendar.css';
 
 // calendar component
 const Calendar: React.FC = () => {
 
   // redux state
-  const id: string = useSelector((state: RootState) => (state.id.value))
-  const year: number = useSelector((state: RootState) => (state.year.value))
-  const month: number = useSelector((state: RootState) => (state.month.value))
+  const id: string = useSelector((state: RootState) => (state.id.value));
+  const year: number = useSelector((state: RootState) => (state.year.value));
+  const month: number = useSelector((state: RootState) => (state.month.value));
 
   // local state
   const [data, setData] = useState<CalendarButtonProps[]>([]); 
@@ -28,19 +28,19 @@ const Calendar: React.FC = () => {
     const postCount: number = 42 - preCount - count;
     let dayCount: number = 0;
     for (let i: number = 0; i < preCount; i++) {
-      newData.push({ userId: id, year:year, month:month, date:null, day:dayCount});
+      newData.push({ date:null, day:dayCount});
       dayCount = (dayCount + 1) % 7
     }
     for (let i: number = 0; i < count; i++) {
-      newData.push({ userId: id, year:year, month:month, date:i+1, day:dayCount});
+      newData.push({ date:i+1, day:dayCount});
       dayCount = (dayCount + 1) % 7
     }
     for (let i: number = 0; i < postCount; i++) {
-      newData.push({ userId: id, year:year, month:month, date:null, day:dayCount});
+      newData.push({ date:null, day:dayCount});
       dayCount = (dayCount + 1) % 7
     }
     setData(newData);
-  }, [year, month])
+  }, [year, month]);
 
   // return
   return (
@@ -49,9 +49,6 @@ const Calendar: React.FC = () => {
         {data.map((item, index) => (
           <CalendarButton
             key={index}
-            userId={item.userId}
-            year={item.year}
-            month={item.month}
             date={item.date}
             day={item.day}
           />
@@ -62,4 +59,4 @@ const Calendar: React.FC = () => {
 }
 
 // export
-export default Calendar
+export default Calendar;

@@ -1,26 +1,34 @@
 // import
-import React, { useState, useEffect } from 'react'
-import { db } from '../database/firebase'
-import { collection, doc, getDocs } from 'firebase/firestore'
-import { NavigateFunction, useNavigate } from 'react-router-dom'
-import { CalendarButtonProps } from '../database/DBType'
-import '../styles/CalendarButton.css'
+import React, { useState, useEffect } from 'react';
+import { db } from '../database/firebase';
+import { collection, doc, getDocs } from 'firebase/firestore';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { CalendarButtonProps } from '../database/DBType';
+import '../styles/CalendarButton.css';
 
 // calendar button component
-const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, date, day }) => {
+const CalendarButton: React.FC<CalendarButtonProps> = ({ date, day }) => {
 
-  // 해당 날짜의 총 지출 및 수입 금액을 저장하는 state
+  // redux state
+  const id: string = useSelector((state: RootState) => (state.id.value));
+  const year: number = useSelector((state: RootState) => (state.year.value));
+  const month: number = useSelector((state: RootState) => (state.month.value));
+
+  // local state
   const [totalCost, setTotalCost] = useState<number>(0);
   const [totalIncome, setTotalIncome] = useState<number>(0);
+  const [goDetail, setGoDetail] = useState<boolean>(false);
 
-  // firebase의 DB 데이터를 가져와서 지출/수입으로 분류하여 총 금액을 계산
+  // calculate total
   useEffect(() => {
     const fetchData = async () => {
       try {
         setTotalCost(0);
         setTotalIncome(0);
         const dateString = `${year}${String(month).padStart(2, '0')}${String(date).padStart(2, '0')}`;
-        const docsRef = collection(doc(db, "users", userId), dateString);
+        const docsRef = collection(doc(db, "users", id), dateString);
         const docsSnap = await getDocs(docsRef);
         if (!docsSnap.empty) {
           let c = 0;
@@ -36,21 +44,23 @@ const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, da
       }
     };
     fetchData();
-  }, [userId, year, month, date])
+  }, [id, year, month, date]);
 
-  // 달력의 날짜를 클릭하면 detail page로 이동
-  const [goDetail, setGoDetail] = useState<boolean>(false);
+  // button click event
   const clickEvent = () => {
-    setGoDetail(true)
+    setGoDetail(true);
   };
+
+  // navigate to detail page
   const navigate: NavigateFunction = useNavigate();
   useEffect(() => {
     if (goDetail) {
       navigate('/detail');
       setGoDetail(false);
     }
-  }, [navigate, goDetail])
+  }, [navigate, goDetail]);
 
+  // return
   return (
     <div className='calendar-button'>
       {date === null ?
@@ -80,4 +90,4 @@ const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, da
   )
 }
 
-export default CalendarButton
+export default CalendarButton;

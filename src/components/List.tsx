@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from '../redux/store'
-import { Dispatch } from '@reduxjs/toolkit'
-import { setValue as setShowCost } from '../redux/showCost'
-import { setValue as setListIndex } from '../redux/listIndex'
-import { db } from '../database/firebase'
-import { collection, doc, setDoc, deleteDoc, updateDoc, getDocs, DocumentData } from 'firebase/firestore'
-import ListButton from './ListButton'
-import { ListProps, DataType } from '../database/DBType'
-import '../styles/List.css'
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../redux/store';
+import { Dispatch } from '@reduxjs/toolkit';
+import { setValue as setShowCost } from '../redux/showCost';
+import { setValue as setListIndex } from '../redux/listIndex';
+import { db } from '../database/firebase';
+import { collection, doc, setDoc, deleteDoc, updateDoc, getDocs, DocumentData } from 'firebase/firestore';
+import ListButton from './ListButton';
+import { ListProps, DataType } from '../database/DBType';
+import '../styles/List.css';
 
 const List: React.FC = () => {
 
   // 전역 state를 redux로 사용하기
-  const id: string = useSelector((state: RootState) => (state.id.value))
-  const year: number = useSelector((state: RootState) => (state.year.value))
-  const month: number = useSelector((state: RootState) => (state.month.value))
-  const date: number = useSelector((state: RootState) => (state.date.value))
-  const showCost: boolean = useSelector((state: RootState) => (state.showCost.value))
-  const listIndex: number = useSelector((state: RootState) => (state.listIndex.value))
+  const id: string = useSelector((state: RootState) => (state.id.value));
+  const year: number = useSelector((state: RootState) => (state.year.value));
+  const month: number = useSelector((state: RootState) => (state.month.value));
+  const date: number = useSelector((state: RootState) => (state.date.value));
+  const showCost: boolean = useSelector((state: RootState) => (state.showCost.value));
+  const listIndex: number = useSelector((state: RootState) => (state.listIndex.value));
   const dispatch: Dispatch = useDispatch();
 
   // 해당 날짜를 yyyymmdd 형태로 변환하여 저장한 변수
-  const dateString: string = `${year}${String(month).padStart(2, '0')}${String(date).padStart(2, '0')}`
+  const dateString: string = `${year}${String(month).padStart(2, '0')}${String(date).padStart(2, '0')}`;
 
   // 지출/수입 목록 및 세부 정보를 가지고 있는 데이터
   const [data, setData] = useState<DataType[]>([]);
@@ -34,7 +34,7 @@ const List: React.FC = () => {
   const [amount, setAmount] = useState<number>(0);
   useEffect(() => {
     setAmount(Number(amountStr));
-  }, [amountStr])
+  }, [amountStr]);
 
   // 입력 폼을 띄울 것인지 확인하는 state
   const [displayForm, setDisplayForm] = useState<boolean>(false);
@@ -47,11 +47,11 @@ const List: React.FC = () => {
   const clickCost = () => {
     dispatch(setShowCost(true));
     dispatch(setListIndex(0));
-  }
+  };
   const clickIncome = () => {
     dispatch(setShowCost(false));
     dispatch(setListIndex(0));
-  }
+  };
 
   // add 버튼, edit 버튼, delete 버튼에 대한 클릭 함수
   const clickAdd = () => {
@@ -60,7 +60,7 @@ const List: React.FC = () => {
       setAddMode(true);
       setDisplayForm(true);
     }
-  }
+  };
   const clickEdit = () => {
     if (!addMode && listIndex !== 0) {
       const item = data.find(item => item.index === listIndex);
@@ -70,7 +70,7 @@ const List: React.FC = () => {
       setEditMode(true);
       setDisplayForm(true);
     }
-  }
+  };
   const clickDelete = () => {
     if (!addMode && !editMode && listIndex !== 0) {
       const newData = data.filter(item => item.index !== listIndex)
@@ -83,10 +83,10 @@ const List: React.FC = () => {
       } catch (error) {
         console.error("DB Delete Fail", error);
       }
-    }
+    };
     deleteDB();
     dispatch(setListIndex(0));
-  }
+  };
 
   // save 버튼과 cancel 버튼에 대한 클릭 함수
   const clickSave = () => {
@@ -148,7 +148,7 @@ const List: React.FC = () => {
     setAddMode(false);
     setEditMode(false);
     setDisplayForm(false);
-  }
+  };
   const clickCancel = () => {
     setCategory('');
     setMemo('');
@@ -158,7 +158,7 @@ const List: React.FC = () => {
     setAddMode(false);
     setEditMode(false);
     setDisplayForm(false);
-  }
+  };
 
   // firebase의 DB 데이터를 가져와서 지출/수입으로 분류하여 따로 페이지에 표시
   useEffect(() => {
@@ -178,7 +178,7 @@ const List: React.FC = () => {
       }
     };
     fetchData();
-  }, [id, year, month, date, dateString])
+  }, [id, year, month, date, dateString]);
 
   return (
     <div className='list-container'>
@@ -262,4 +262,4 @@ const List: React.FC = () => {
   )
 }
 
-export default List
+export default List;

@@ -1,9 +1,9 @@
 // import
-import React from 'react'
-import Header from '../components/Header'
-import MainController from '../components/MainController'
-import Calendar from '../components/Calendar'
-import '../styles/MainPage.css'
+import React from 'react';
+import Header from '../components/Header';
+import MainController from '../components/MainController';
+import Calendar from '../components/Calendar';
+import '../styles/MainPage.css';
 
 // main page component
 const MainPage: React.FC = () => {
@@ -19,4 +19,4 @@ const MainPage: React.FC = () => {
 }
 
 // export
-export default MainPage
+export default MainPage;

@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import Header from '../components/Header'
-import MainController from '../components/MainController'
-import Graph from '../components/Graph'
-import { StatInfo } from '../database/DBType'
-import '../styles/StatPage.css'
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import Header from '../components/Header';
+import MainController from '../components/MainController';
+import Graph from '../components/Graph';
+import { StatInfo } from '../database/DBType';
+import '../styles/StatPage.css';
 
 const StatPage: React.FC = () => {
 
@@ -26,4 +26,4 @@ const StatPage: React.FC = () => {
   )
 }
 
-export default StatPage
+export default StatPage;

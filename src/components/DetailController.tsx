@@ -1,11 +1,11 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from '../redux/store'
-import { Dispatch } from '@reduxjs/toolkit'
-import { setValue as setYear } from '../redux/year'
-import { setValue as setMonth } from '../redux/month'
-import { setValue as setDate } from '../redux/date'
-import '../styles/DetailController.css'
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../redux/store';
+import { Dispatch } from '@reduxjs/toolkit';
+import { setValue as setYear } from '../redux/year';
+import { setValue as setMonth } from '../redux/month';
+import { setValue as setDate } from '../redux/date';
+import '../styles/DetailController.css';
 
 
 const DetailController: React.FC = () => {
@@ -18,19 +18,19 @@ const DetailController: React.FC = () => {
 
   // 이전 날짜 이동 버튼
   const prevDate: () => void = () => {
-    const prevD: Date = new Date(year, month - 1, date - 1)
+    const prevD: Date = new Date(year, month - 1, date - 1);
     dispatch(setYear(prevD.getFullYear()));
     dispatch(setMonth(prevD.getMonth() + 1));
     dispatch(setDate(prevD.getDate()));
-  }
+  };
 
   // 다음 날짜 이동 버튼
   const nextDate: () => void = () => {
-    const nextD: Date = new Date(year, month - 1, date + 1)
+    const nextD: Date = new Date(year, month - 1, date + 1);
     dispatch(setYear(nextD.getFullYear()));
     dispatch(setMonth(nextD.getMonth() + 1));
     dispatch(setDate(nextD.getDate()));
-  }
+  };
 
   return (
     <div className='detail-controller-container'>
@@ -41,4 +41,4 @@ const DetailController: React.FC = () => {
   )
 }
 
-export default DetailController
+export default DetailController;
