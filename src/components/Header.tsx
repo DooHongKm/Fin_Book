@@ -1,6 +1,7 @@
 // import
 import React, { useState, useEffect } from 'react'
 import { NavigateFunction, useNavigate } from 'react-router-dom'
+
 import '../styles/Header.css'
 
 // header component

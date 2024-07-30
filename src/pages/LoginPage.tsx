@@ -1,21 +1,16 @@
 // import
 import React, { useState, useEffect } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 import { Dispatch } from '@reduxjs/toolkit';
 import { setValue as setId } from '../redux/id';
 import { setValue as setPw } from '../redux/pw';
-
 import { db } from '../database/firebase';
 import { doc, getDoc } from 'firebase/firestore';
-
 import Header from '../components/Header';
 import Logo from "../images/Logo.svg";
-
 import { UserType } from '../database/DBType';
-
 import '../styles/LoginPage.css'
 
 // login page component

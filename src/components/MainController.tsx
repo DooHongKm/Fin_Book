@@ -1,19 +1,21 @@
+// import
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from '../redux/store'
-import { Dispatch } from '@reduxjs/toolkit'
-import { incValue as increaseYear, decValue as decreaseYear, setValue as setYear } from '../redux/year'
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../redux/store';
+import { Dispatch } from '@reduxjs/toolkit';
+import { incValue as increaseYear, decValue as decreaseYear } from '../redux/year'
 import { incValue as increaseMonth, decValue as decreaseMonth, setValue as setMonth } from '../redux/month'
 import '../styles/MainController.css'
 
+// main controller component
 const MainController: React.FC = () => {
 
-  // 전역 state를 redux로 사용하기
+  // redux state
   const year: number = useSelector((state: RootState) => (state.year.value));
   const month: number = useSelector((state: RootState) => (state.month.value));
   const dispatch: Dispatch = useDispatch();
 
-  // 이전 달 이동 버튼 함수
+  // prev button click event
   const prevMonth = () => {
     if (month === 1) {
       dispatch(decreaseYear({}));
@@ -23,7 +25,7 @@ const MainController: React.FC = () => {
     }
   }
 
-  // 다음 달 이동 버튼 함수
+  // next button click event
   const nextMonth = () => {
     if (month === 12) {
       dispatch(increaseYear({}));
@@ -33,6 +35,7 @@ const MainController: React.FC = () => {
     }
   }
 
+  // return
   return (
     <div className='main-controller-container'>
       <button onClick={prevMonth}>◀</button>
@@ -42,4 +45,5 @@ const MainController: React.FC = () => {
   )
 }
 
+// export
 export default MainController

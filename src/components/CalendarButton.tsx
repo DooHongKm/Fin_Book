@@ -1,3 +1,4 @@
+// import
 import React, { useState, useEffect } from 'react'
 import { db } from '../database/firebase'
 import { collection, doc, getDocs } from 'firebase/firestore'
@@ -5,6 +6,7 @@ import { NavigateFunction, useNavigate } from 'react-router-dom'
 import { CalendarButtonProps } from '../database/DBType'
 import '../styles/CalendarButton.css'
 
+// calendar button component
 const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, date, day }) => {
 
   // 해당 날짜의 총 지출 및 수입 금액을 저장하는 state

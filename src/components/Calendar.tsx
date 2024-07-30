@@ -1,22 +1,23 @@
+// import
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
 import CalendarButton from './CalendarButton'
 import { CalendarButtonProps } from '../database/DBType'
 import '../styles/Calendar.css'
 
-
+// calendar component
 const Calendar: React.FC = () => {
 
-  // 전역 state를 redux로 사용하기
+  // redux state
   const id: string = useSelector((state: RootState) => (state.id.value))
   const year: number = useSelector((state: RootState) => (state.year.value))
   const month: number = useSelector((state: RootState) => (state.month.value))
 
-  // 날짜 및 요일 정보를 저장하기 위한 state
+  // local state
   const [data, setData] = useState<CalendarButtonProps[]>([]); 
 
-  // 달력을 표시하기 위한 데이터 전처리
+  // data preprocessing
   useEffect(() => {
     let newData: CalendarButtonProps[] = [];
     const firstDate: Date = new Date(year, month - 1, 1);
@@ -41,6 +42,7 @@ const Calendar: React.FC = () => {
     setData(newData);
   }, [year, month])
 
+  // return
   return (
     <div className='calendar-container'>
       <div className='calendar-inner-container'>
@@ -59,4 +61,5 @@ const Calendar: React.FC = () => {
   )
 }
 
+// export
 export default Calendar
