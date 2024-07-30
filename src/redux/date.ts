@@ -2,7 +2,7 @@
 import { Slice, createSlice } from "@reduxjs/toolkit";
 
 // init
-const initialState: { value: number | null } = {
+const initialState: { value: number } = {
   value: 0,
 };
 
@@ -14,22 +14,15 @@ export const dateSlice: Slice = createSlice({
     setValue: (state, action) => {
       state.value = action.payload;
     },
-    setNull: (state) => {
-      state.value = null;
-    },
     incValue: (state) => {
-      if (state.value !== null) {
-        state.value++;
-      }
+      state.value++;
     },
     decValue: (state) => {
-      if (state.value !== null) {
-        state.value--;
-      }
+      state.value--;
     },
   },
 });
 
 // export
-export const { setValue, setNull, incValue, decValue } = dateSlice.actions;
+export const { setValue, incValue, decValue } = dateSlice.actions;
 export default dateSlice.reducer;

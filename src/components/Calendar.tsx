@@ -10,7 +10,6 @@ import '../styles/Calendar.css';
 const Calendar: React.FC = () => {
 
   // redux state
-  const id: string = useSelector((state: RootState) => (state.id.value));
   const year: number = useSelector((state: RootState) => (state.year.value));
   const month: number = useSelector((state: RootState) => (state.month.value));
 
@@ -29,15 +28,15 @@ const Calendar: React.FC = () => {
     let dayCount: number = 0;
     for (let i: number = 0; i < preCount; i++) {
       newData.push({ date:null, day:dayCount});
-      dayCount = (dayCount + 1) % 7
+      dayCount = (dayCount + 1) % 7;
     }
     for (let i: number = 0; i < count; i++) {
       newData.push({ date:i+1, day:dayCount});
-      dayCount = (dayCount + 1) % 7
+      dayCount = (dayCount + 1) % 7;
     }
     for (let i: number = 0; i < postCount; i++) {
       newData.push({ date:null, day:dayCount});
-      dayCount = (dayCount + 1) % 7
+      dayCount = (dayCount + 1) % 7;
     }
     setData(newData);
   }, [year, month]);

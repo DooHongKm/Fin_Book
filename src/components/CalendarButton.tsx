@@ -2,7 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../database/firebase';
 import { collection, doc, getDocs } from 'firebase/firestore';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { Dispatch } from '@reduxjs/toolkit';
+import { setValue as setDate } from '../redux/date';
 import { RootState } from '../redux/store';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { CalendarButtonProps } from '../database/DBType';
@@ -15,6 +17,7 @@ const CalendarButton: React.FC<CalendarButtonProps> = ({ date, day }) => {
   const id: string = useSelector((state: RootState) => (state.id.value));
   const year: number = useSelector((state: RootState) => (state.year.value));
   const month: number = useSelector((state: RootState) => (state.month.value));
+  const dispatch: Dispatch = useDispatch();
 
   // local state
   const [totalCost, setTotalCost] = useState<number>(0);
@@ -49,6 +52,7 @@ const CalendarButton: React.FC<CalendarButtonProps> = ({ date, day }) => {
   // button click event
   const clickEvent = () => {
     setGoDetail(true);
+    //dispatch(setDate(date));
   };
 
   // navigate to detail page

@@ -9,7 +9,7 @@ import { setValue as setPw } from '../redux/pw';
 import { db } from '../database/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import Header from '../components/Header';
-import Logo from "../images/Logo.svg";
+import Logo from "../assets/Logo.svg";
 import { UserType } from '../database/DBType';
 import '../styles/LoginPage.css'
 
@@ -61,10 +61,10 @@ const LoginPage: React.FC = () => {
   useEffect(() => {
     if (loginSuccess) {
       navigate('/main');
-      setLoginSuccess(false);
       dispatch(setPw(''));
+      setLoginSuccess(false);
     }
-  }, [navigate, loginSuccess]);
+  }, [navigate, dispatch, loginSuccess]);
 
   // return
   return (
