@@ -1,25 +1,35 @@
 import React from 'react'
-import { MainControllerProps } from '../database/DBType'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../redux/store'
+import { Dispatch } from '@reduxjs/toolkit'
+import { incValue as increaseYear, decValue as decreaseYear, setValue as setYear } from '../redux/year'
+import { incValue as increaseMonth, decValue as decreaseMonth, setValue as setMonth } from '../redux/month'
+import '../styles/MainController.css'
 
-const MainController: React.FC<MainControllerProps> = ({ year, setYear, month, setMonth }) => {
+const MainController: React.FC = () => {
 
-  // 이전 달 이동 버튼
-  const prevMonth: () => void = () => {
+  // 전역 state를 redux로 사용하기
+  const year: number = useSelector((state: RootState) => (state.year.value));
+  const month: number = useSelector((state: RootState) => (state.month.value));
+  const dispatch: Dispatch = useDispatch();
+
+  // 이전 달 이동 버튼 함수
+  const prevMonth = () => {
     if (month === 1) {
-      setYear(prevState => prevState - 1)
-      setMonth(12)
+      dispatch(decreaseYear({}));
+      dispatch(setMonth(12));
     } else {
-      setMonth(prevState => prevState - 1)
+      dispatch(decreaseMonth({}));
     }
   }
 
-  // 다음 달 이동 버튼
-  const nextMonth: () => void = () => {
+  // 다음 달 이동 버튼 함수
+  const nextMonth = () => {
     if (month === 12) {
-      setYear(prevState => prevState + 1)
-      setMonth(1)
+      dispatch(increaseYear({}));
+      dispatch(setMonth(1));
     } else {
-      setMonth(prevState => prevState + 1)
+      dispatch(increaseMonth({}));
     }
   }
 

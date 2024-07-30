@@ -1,10 +1,13 @@
+// import
 import { Slice, createSlice } from "@reduxjs/toolkit";
 
+// init
 const initialState: { value: number | null } = {
   value: 0,
 };
 
-export const slice: Slice = createSlice({
+// slice
+export const dateSlice: Slice = createSlice({
   name: "date",
   initialState,
   reducers: {
@@ -12,16 +15,21 @@ export const slice: Slice = createSlice({
       state.value = action.payload;
     },
     setNull: (state) => {
-      state = null;
+      state.value = null;
     },
-    increase: (state) => {
-      state++;
+    incValue: (state) => {
+      if (state.value !== null) {
+        state.value++;
+      }
     },
-    decrease: (state) => {
-      state--;
+    decValue: (state) => {
+      if (state.value !== null) {
+        state.value--;
+      }
     },
   },
 });
 
-export const { setValue, setNull, increase, decrease } = slice.actions;
-export default slice.reducer;
+// export
+export const { setValue, setNull, incValue, decValue } = dateSlice.actions;
+export default dateSlice.reducer;

@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import MainController from '../components/MainController'
 import Graph from '../components/Graph'
 import { StatInfo } from '../database/DBType'
+import '../styles/StatPage.css'
 
 const StatPage: React.FC = () => {
 
@@ -18,9 +19,9 @@ const StatPage: React.FC = () => {
 
   return (
     <div className='stat-container'>
-      <Header works={true} userId={id} year={y} month={m}/>
+      {/* <Header works={true} userId={id} year={y} month={m}/>
       <MainController year={y} setYear={setY} month={m} setMonth={setM}/>
-      <Graph userId={userId} year={y} month={m}/>
+      <Graph userId={userId} year={y} month={m}/> */}
     </div>
   )
 }

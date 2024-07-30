@@ -1,27 +1,28 @@
+// import
 import { Slice, createSlice } from "@reduxjs/toolkit";
 
-const d: Date = new Date();
-const y: number = d.getFullYear();
-
+// init
 const initialState: { value: number } = {
-  value: y,
+  value: new Date().getFullYear(),
 };
 
-export const slice: Slice = createSlice({
+// slice
+export const yearSlice: Slice = createSlice({
   name: "year",
   initialState,
   reducers: {
     setValue: (state, action) => {
       state.value = action.payload;
     },
-    increase: (state) => {
-      state++;
+    incValue: (state) => {
+      state.value++;
     },
-    decrease: (state) => {
-      state--;
+    decValue: (state) => {
+      state.value--;
     },
   },
 });
 
-export const { setValue, increase, decrease } = slice.actions;
-export default slice.reducer;
+// export
+export const { setValue, incValue, decValue } = yearSlice.actions;
+export default yearSlice.reducer;

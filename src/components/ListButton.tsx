@@ -1,7 +1,8 @@
 import React from 'react'
 import { ListButtonProps } from '../database/DBType';
+import '../styles/ListButton.css'
 
-const ListButton: React.FC<ListButtonProps> = ({ index, cost, category, amount, memo, selectedIndex, setSelectedIndex }) => {
+const ListButton: React.FC<ListButtonProps> = ({ index, cost, category, amount, memo, selectedIndex }) => {
 
   // 지출/수입에 따라 금액 앞에 부호를 붙여 표현한 변수
   let sign: string = (!cost ? '+ ' : '- ');
@@ -9,7 +10,7 @@ const ListButton: React.FC<ListButtonProps> = ({ index, cost, category, amount, 
 
   // 목록 버튼에 대한 클릭 함수
   const clickEvent = () => {
-    setSelectedIndex(index);
+    // setSelectedIndex(index);
   }
 
   return (

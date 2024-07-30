@@ -3,6 +3,7 @@ import { ResponsivePie } from '@nivo/pie'
 import { db } from '../database/firebase'
 import { collection, doc, getDocs } from 'firebase/firestore'
 import { GraphProps, DataType, NivoType } from '../database/DBType'
+import '../styles/Graph.css'
 
 const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
 

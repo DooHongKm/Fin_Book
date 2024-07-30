@@ -78,5 +78,5 @@ export interface ListProps extends DetailInfo {
 export interface ListButtonProps extends Omit<DataType, "date"> {
   key: number;
   selectedIndex: number;
-  setSelectedIndex: React.Dispatch<React.SetStateAction<number>>;
+  // setSelectedIndex: React.Dispatch<React.SetStateAction<number>>;
 }

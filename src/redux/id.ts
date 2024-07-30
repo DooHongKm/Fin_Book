@@ -1,10 +1,13 @@
+// import
 import { Slice, createSlice } from "@reduxjs/toolkit";
 
+// init
 const initialState: { value: string } = {
   value: "",
 };
 
-export const slice: Slice = createSlice({
+// slice
+export const idSlice: Slice = createSlice({
   name: "id",
   initialState,
   reducers: {
@@ -14,5 +17,6 @@ export const slice: Slice = createSlice({
   },
 });
 
-export const { setValue } = slice.actions;
-export default slice.reducer;
+// export
+export const { setValue } = idSlice.actions;
+export default idSlice.reducer;

@@ -1,16 +1,28 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../redux/store'
+import { Dispatch } from '@reduxjs/toolkit'
+import { setValue as setShowCost } from '../redux/showCost'
+import { setValue as setListIndex } from '../redux/listIndex'
 import { db } from '../database/firebase'
 import { collection, doc, setDoc, deleteDoc, updateDoc, getDocs, DocumentData } from 'firebase/firestore'
 import ListButton from './ListButton'
 import { ListProps, DataType } from '../database/DBType'
+import '../styles/List.css'
 
-const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setShowCost }) => {
+const List: React.FC = () => {
+
+  // 전역 state를 redux로 사용하기
+  const id: string = useSelector((state: RootState) => (state.id.value))
+  const year: number = useSelector((state: RootState) => (state.year.value))
+  const month: number = useSelector((state: RootState) => (state.month.value))
+  const date: number = useSelector((state: RootState) => (state.date.value))
+  const showCost: boolean = useSelector((state: RootState) => (state.showCost.value))
+  const listIndex: number = useSelector((state: RootState) => (state.listIndex.value))
+  const dispatch: Dispatch = useDispatch();
 
   // 해당 날짜를 yyyymmdd 형태로 변환하여 저장한 변수
   const dateString: string = `${year}${String(month).padStart(2, '0')}${String(date).padStart(2, '0')}`
-
-  // 선택한 목록의 index를 저장하는 state
-  const [listIndex, setListIndex] = useState<number>(0);
 
   // 지출/수입 목록 및 세부 정보를 가지고 있는 데이터
   const [data, setData] = useState<DataType[]>([]);
@@ -33,18 +45,18 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
 
   // cost 버튼과 income 버튼에 대한 클릭 함수
   const clickCost = () => {
-    setShowCost(true);
-    setListIndex(0);
+    dispatch(setShowCost(true));
+    dispatch(setListIndex(0));
   }
   const clickIncome = () => {
-    setShowCost(false);
-    setListIndex(0);
+    dispatch(setShowCost(false));
+    dispatch(setListIndex(0));
   }
 
   // add 버튼, edit 버튼, delete 버튼에 대한 클릭 함수
   const clickAdd = () => {
     if (!editMode) {
-      setListIndex(0);
+      dispatch(setListIndex(0));
       setAddMode(true);
       setDisplayForm(true);
     }
@@ -66,14 +78,14 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
     }
     const deleteDB = async () => {
       try {
-        const docRef = doc(doc(db, "users", userId), dateString, listIndex.toString());
+        const docRef = doc(doc(db, "users", id), dateString, listIndex.toString());
         await deleteDoc(docRef);
       } catch (error) {
         console.error("DB Delete Fail", error);
       }
     }
     deleteDB();
-    setListIndex(0);
+    dispatch(setListIndex(0));
   }
 
   // save 버튼과 cancel 버튼에 대한 클릭 함수
@@ -97,7 +109,7 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
       setData(newData);
       const addDB = async () => {
         try {
-          const docRef = doc(doc(db, "users", userId), dateString, newItem.index.toString());
+          const docRef = doc(doc(db, "users", id), dateString, newItem.index.toString());
           await setDoc(docRef, newItem);
         } catch (error) {
           console.error("DB Add Fail", error);
@@ -118,7 +130,7 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
       setData(newData);
       const editDB = async () => {
         try {
-          const docRef = doc(doc(db, "users", userId), dateString, listIndex.toString());
+          const docRef = doc(doc(db, "users", id), dateString, listIndex.toString());
           await updateDoc(docRef, newItem as DocumentData);
         } catch (error) {
           console.error("DB Edit Fail", error);
@@ -132,7 +144,7 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
     setMemo('');
     setAmountStr('');
     setAmount(0);
-    setListIndex(0);
+    dispatch(setListIndex(0));
     setAddMode(false);
     setEditMode(false);
     setDisplayForm(false);
@@ -142,7 +154,7 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
     setMemo('');
     setAmountStr('');
     setAmount(0);
-    setListIndex(0);
+    dispatch(setListIndex(0));
     setAddMode(false);
     setEditMode(false);
     setDisplayForm(false);
@@ -153,7 +165,7 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
     const fetchData = async () => {
       let newData: DataType[] = [];
       try {
-        const colRef = collection(doc(db, "users", userId), dateString);
+        const colRef = collection(doc(db, "users", id), dateString);
         const colSnap = await getDocs(colRef);
         if (!colSnap.empty) {
           colSnap.forEach((doc) => {
@@ -166,7 +178,7 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
       }
     };
     fetchData();
-  }, [userId, year, month, date, dateString])
+  }, [id, year, month, date, dateString])
 
   return (
     <div className='list-container'>
@@ -192,7 +204,6 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
                 amount={item.amount}
                 memo={item.memo}
                 selectedIndex={listIndex}
-                setSelectedIndex={setListIndex}
               />
             ))) :
             (data.filter(item => !item.cost).map(item => (
@@ -204,7 +215,6 @@ const List: React.FC<ListProps> = ({ userId, year, month, date, showCost, setSho
                 amount={item.amount}
                 memo={item.memo}
                 selectedIndex={listIndex}
-                setSelectedIndex={setListIndex}
               />
             )))
           }

@@ -1,22 +1,35 @@
 import React from 'react'
-import { DetailControllerProps } from '../database/DBType'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../redux/store'
+import { Dispatch } from '@reduxjs/toolkit'
+import { setValue as setYear } from '../redux/year'
+import { setValue as setMonth } from '../redux/month'
+import { setValue as setDate } from '../redux/date'
+import '../styles/DetailController.css'
 
-const DetailController: React.FC<DetailControllerProps> = ({ year, setYear, month, setMonth, date, setDate }) => {
+
+const DetailController: React.FC = () => {
+
+  // 전역 state를 redux로 사용하기
+  const year: number = useSelector((state: RootState) => (state.year.value));
+  const month: number = useSelector((state: RootState) => (state.month.value));
+  const date: number = useSelector((state: RootState) => (state.date.value));
+  const dispatch: Dispatch = useDispatch();
 
   // 이전 날짜 이동 버튼
   const prevDate: () => void = () => {
     const prevD: Date = new Date(year, month - 1, date - 1)
-    setYear(prevD.getFullYear());
-    setMonth(prevD.getMonth() + 1);
-    setDate(prevD.getDate());
+    dispatch(setYear(prevD.getFullYear()));
+    dispatch(setMonth(prevD.getMonth() + 1));
+    dispatch(setDate(prevD.getDate()));
   }
 
   // 다음 날짜 이동 버튼
   const nextDate: () => void = () => {
     const nextD: Date = new Date(year, month - 1, date + 1)
-    setYear(nextD.getFullYear());
-    setMonth(nextD.getMonth() + 1);
-    setDate(nextD.getDate());
+    dispatch(setYear(nextD.getFullYear()));
+    dispatch(setMonth(nextD.getMonth() + 1));
+    dispatch(setDate(nextD.getDate()));
   }
 
   return (

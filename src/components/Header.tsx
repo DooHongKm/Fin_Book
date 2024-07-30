@@ -1,31 +1,32 @@
+// import
 import React, { useState, useEffect } from 'react'
 import { NavigateFunction, useNavigate } from 'react-router-dom'
-import { HeaderProps } from '../database/DBType';
+import '../styles/Header.css'
 
-const Header: React.FC<HeaderProps> = ({ works, userId, year, month }) => {
+// header component
+const Header: React.FC<{ works: boolean }> = ({ works }) => {
 
-  // main page, stat page 중 어디로 이동하는지 판단하는 state
+  // local state
   const [goMain, setGoMain] = useState<boolean>(false);
   const [goStat, setGoStat] = useState<boolean>(false);
 
-  // 버튼을 클릭하면 해당 page로 이동
+  // navigate to specific page
   const navigate: NavigateFunction = useNavigate();
-  const navigateMain: () => void = () => {
+  const navigateMain = () => {
     setGoMain(true);
-  }
-  const navigateStat: () => void = () => {
+  };
+  const navigateStat = () => {
     setGoStat(true);
-  }
+  };
   useEffect(() => {
     if (works && goMain) {
-      navigate('/main', { state: {userId: userId, year: year, month: month} })
+      navigate('/main');
     } else if (works && goStat) {
-      navigate('/stat', { state: {userId: userId, year: year, month: month} });
+      navigate('/stat');
     }
-    setGoMain(false);
-    setGoStat(false);
-  }, [userId, year, month, navigate, works, goMain, goStat])
+  }, [navigate, works, goMain, goStat]);
 
+  // return
   return (
     <div className='header-container'>
       <button onClick={navigateMain}>Calendar</button>
@@ -34,4 +35,5 @@ const Header: React.FC<HeaderProps> = ({ works, userId, year, month }) => {
   )
 }
 
+// export
 export default Header

@@ -1,0 +1,151 @@
+.list-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-inner-container {
+  width: 700px;
+  height: 100%;
+  margin-top: 1%;
+  margin-bottom: 5%;
+  border: 1.5px solid rgb(55, 145, 230);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.list-data-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.list-switch-container {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.list-switch-container button {
+  width: 350px;
+  height: 100%;
+  border: none;
+  border-bottom: 1.5px solid rgb(55, 145, 230);
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: rgba(40, 100, 150, 0.5);
+  background-color: white;
+}
+
+.list-switch-container button:hover {
+  background-color: rgba(55, 145, 230, 0.2);
+}
+
+.list-switch-container button:first-child {
+  border-right: 1.5px solid rgb(55, 145, 230);
+}
+
+.list-switch-container button.switch-clicked {
+  color: rgb(40, 100, 150);
+  background-color: rgba(55, 145, 230, 0.2);
+}
+
+.list-form {
+  width: 100%;
+  height: 70px;
+  padding: 20px;
+  padding-bottom: 0;
+  border-top: 1.5px solid rgb(55, 145, 230);
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-input {
+  width: 30%;
+  height: 25px;
+  display: flex;
+  justify-content: left;
+}
+
+.list-input p {
+  height: 100%;
+  color: rgb(40, 100, 150);
+  font-size: 15px;
+}
+
+.list-input input {
+  width: 100%;
+  height: 100%;
+  margin-left: 8px;
+  padding-left: 5px;
+  border: 1px solid rgb(55, 145, 230);
+}
+
+.list-form-button-container {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: right;
+  padding-right: 20px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.list-form-button-container button {
+  width: 60px;
+  height: 30px;
+  margin-left: 15px;
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(40, 100, 150);
+  background-color: white;
+  border: 1px solid rgb(55, 145, 230);
+  border-radius: 5px;
+}
+
+.list-form-button-container button:hover {
+  background-color: rgba(55, 145, 230, 0.2);
+}
+
+.hidden-form {
+  visibility: hidden;
+}
+
+.list-edit-container {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 5%;
+  display: flex;
+  justify-content: center;
+}
+
+.list-edit-container button {
+  width: 120px;
+  height: 100%;
+  margin-right: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.8px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: rgb(55, 145, 230, 0.9);
+}
+
+.list-edit-container button:hover {
+  background-color: rgb(110, 170, 230);
+}
+
+.list-edit-container button:last-child {
+  margin-right: 0;
+}

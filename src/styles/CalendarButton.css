@@ -1,0 +1,28 @@
+.calendar-button button {
+  width: 100%;
+  height: 100%;
+  padding: 5%;
+  font-size: 16px;
+  font-weight: bold;
+  border-left: none;
+  border-right: 2px solid rgb(70, 125, 155);
+  border-top: none;
+  border-bottom: 2px solid rgb(70, 125, 155);
+  background-color: white;
+  display: flex;
+  justify-content: left;
+  align-items: start;
+}
+
+.invisible-button {
+  font-size: 0;
+  pointer-events: none;
+}
+
+.red-button {
+  color: red;
+}
+
+.blue-button {
+  color: blue;
+}

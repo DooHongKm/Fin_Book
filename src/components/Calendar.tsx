@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../redux/store'
 import CalendarButton from './CalendarButton'
-import { CalendarProps, CalendarButtonProps } from '../database/DBType';
+import { CalendarButtonProps } from '../database/DBType'
+import '../styles/Calendar.css'
 
-const Calendar: React.FC<CalendarProps> = ({ userId, year, month }) => {
+
+const Calendar: React.FC = () => {
+
+  // 전역 state를 redux로 사용하기
+  const id: string = useSelector((state: RootState) => (state.id.value))
+  const year: number = useSelector((state: RootState) => (state.year.value))
+  const month: number = useSelector((state: RootState) => (state.month.value))
 
   // 날짜 및 요일 정보를 저장하기 위한 state
   const [data, setData] = useState<CalendarButtonProps[]>([]); 
@@ -10,7 +19,6 @@ const Calendar: React.FC<CalendarProps> = ({ userId, year, month }) => {
   // 달력을 표시하기 위한 데이터 전처리
   useEffect(() => {
     let newData: CalendarButtonProps[] = [];
-    // 달력을 표시하기 위한 날짜 및 요일 계산
     const firstDate: Date = new Date(year, month - 1, 1);
     const lastDate: Date = new Date(year, month, 0);
     const firstDay: number = firstDate.getDay();
@@ -19,15 +27,15 @@ const Calendar: React.FC<CalendarProps> = ({ userId, year, month }) => {
     const postCount: number = 42 - preCount - count;
     let dayCount: number = 0;
     for (let i: number = 0; i < preCount; i++) {
-      newData.push({ userId: userId, year:year, month:month, date:null, day:dayCount});
+      newData.push({ userId: id, year:year, month:month, date:null, day:dayCount});
       dayCount = (dayCount + 1) % 7
     }
     for (let i: number = 0; i < count; i++) {
-      newData.push({ userId: userId, year:year, month:month, date:i+1, day:dayCount});
+      newData.push({ userId: id, year:year, month:month, date:i+1, day:dayCount});
       dayCount = (dayCount + 1) % 7
     }
     for (let i: number = 0; i < postCount; i++) {
-      newData.push({ userId: userId, year:year, month:month, date:null, day:dayCount});
+      newData.push({ userId: id, year:year, month:month, date:null, day:dayCount});
       dayCount = (dayCount + 1) % 7
     }
     setData(newData);

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { NavigateFunction, useNavigate } from 'react-router-dom'
 import { db } from '../database/firebase'
 import { collection, doc, getDocs } from 'firebase/firestore'
+import { NavigateFunction, useNavigate } from 'react-router-dom'
 import { CalendarButtonProps } from '../database/DBType'
+import '../styles/CalendarButton.css'
 
 const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, date, day }) => {
 
@@ -43,10 +44,10 @@ const CalendarButton: React.FC<CalendarButtonProps> = ({ userId, year, month, da
   const navigate: NavigateFunction = useNavigate();
   useEffect(() => {
     if (goDetail) {
-      navigate('/detail', { state: {userId: userId, year: year, month: month, date:date} });
+      navigate('/detail');
       setGoDetail(false);
     }
-  }, [navigate, userId, year, month, date, goDetail])
+  }, [navigate, goDetail])
 
   return (
     <div className='calendar-button'>

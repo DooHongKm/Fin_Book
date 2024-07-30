@@ -2,13 +2,13 @@
 import { Slice, createSlice } from "@reduxjs/toolkit";
 
 // init
-const initialState: { value: string } = {
-  value: "",
+const initialState: { value: number } = {
+  value: 0,
 };
 
 // slice
-export const pwSlice: Slice = createSlice({
-  name: "pw",
+export const listIndexSlice: Slice = createSlice({
+  name: "listIndex",
   initialState,
   reducers: {
     setValue: (state, action) => {
@@ -18,5 +18,5 @@ export const pwSlice: Slice = createSlice({
 });
 
 // export
-export const { setValue } = pwSlice.actions;
-export default pwSlice.reducer;
+export const { setValue } = listIndexSlice.actions;
+export default listIndexSlice.reducer;
