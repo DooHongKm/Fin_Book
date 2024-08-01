@@ -3,7 +3,7 @@ import { Slice, createSlice } from "@reduxjs/toolkit";
 
 // init
 const initialState: { value: number } = {
-  value: 0,
+  value: new Date().getDate(),
 };
 
 // slice
@@ -15,10 +15,10 @@ export const dateSlice: Slice = createSlice({
       state.value = action.payload;
     },
     incValue: (state) => {
-      state.value++;
+      state.value = state.value += 1;
     },
     decValue: (state) => {
-      state.value--;
+      state.value = state.value -= 1;
     },
   },
 });

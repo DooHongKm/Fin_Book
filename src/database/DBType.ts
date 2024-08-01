@@ -49,6 +49,8 @@ export interface CalendarProps extends MainInfo {}
 export interface CalendarButtonProps {
   date: number | null;
   day: number;
+  totalCost: number;
+  totalIncome: number;
 }
 
 // Props (graph)

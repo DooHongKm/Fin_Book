@@ -4,19 +4,24 @@
   padding: 5%;
   font-size: 16px;
   font-weight: bold;
-  border-left: none;
-  border-right: 2px solid rgb(70, 125, 155);
-  border-top: none;
-  border-bottom: 2px solid rgb(70, 125, 155);
+  border: 1px solid rgb(70, 125, 155);
   background-color: white;
   display: flex;
   justify-content: left;
   align-items: start;
 }
 
+.invisible-text  {
+  visibility: hidden;
+}
+
 .invisible-button {
   font-size: 0;
   pointer-events: none;
+}
+
+.invisible-button p {
+  visibility: hidden;
 }
 
 .red-button {

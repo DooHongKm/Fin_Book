@@ -15,10 +15,10 @@ export const monthSlice: Slice = createSlice({
       state.value = action.payload;
     },
     incValue: (state) => {
-      state.value++;
+      state.value = state.value + 1;
     },
     decValue: (state) => {
-      state.value--;
+      state.value = state.value - 1;
     },
   },
 });
