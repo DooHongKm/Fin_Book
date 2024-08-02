@@ -55,3 +55,19 @@
 .visible-text p.red-visible-text {
   color: rgb(255, 100, 100);
 }
+
+.loading-container {
+  width: 100%;
+  height: 100%;
+  border: 2.5px solid rgb(70, 125, 155);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-text {
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: rgb(80, 80, 80);
+}
