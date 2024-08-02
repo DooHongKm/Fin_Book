@@ -1,13 +1,12 @@
 // import
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { db } from '../database/firebase';
 import { collection, doc, setDoc, deleteDoc, updateDoc, getDocs, DocumentData } from 'firebase/firestore';
 import ListButton from './ListButton';
-import { ListProps, DataType } from '../database/DBType';
+import { DataType } from '../database/DBType';
 import '../styles/List.css';
-import { setSelectionRange } from '@testing-library/user-event/dist/utils';
 
 // list component
 const List: React.FC = () => {

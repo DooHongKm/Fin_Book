@@ -1,35 +1,38 @@
+// import
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 import { ResponsivePie } from '@nivo/pie';
 import { db } from '../database/firebase';
 import { collection, doc, getDocs } from 'firebase/firestore';
-import { GraphProps, DataType, NivoType } from '../database/DBType';
+import { DataType, NivoType } from '../database/DBType';
 import '../styles/Graph.css';
 
-const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
+// graph component
+const Graph: React.FC = () => {
 
-  // 지출/수입을 구분하는 버튼이 눌렸는지 판단하는 state
-  const [costButton, setCostButton] = useState<boolean>(true);
-  
-  // cost 버튼과 income 버튼에 대한 클릭 함수
-  const clickCost = () => {
-    setCostButton(true);
-  }
-  const clickIncome = () => {
-    setCostButton(false);
-  }
+  // redux state
+  const id: string = useSelector((state: RootState) => (state.id.value));
+  const year: number = useSelector((state: RootState) => (state.year.value));
+  const month: number = useSelector((state: RootState) => (state.month.value));
 
-  // 그래프를 로딩하고 있는 중인지 판단하는 state
-  const [loading, setLoading] = useState<boolean>(false);
-
-  // 지출 데이터와 수입 데이터를 그래프 input 타입으로 변환하여 저장하는 state
+  // local state
+  const [showCost, setShowCost] = useState<boolean>(true);
   const [costData, setCostData] = useState<NivoType[]>([]);
   const [incomeData, setIncomeData] = useState<NivoType[]>([]);
-
-  // 지출/수입 데이터를 분석하여 해당 달의 총 지출/수입 금액을 저장하는 state
   const [totalCost, setTotalCost] = useState<number>(0);
   const [totalIncome, setTotalIncome] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+  
+  // cost-income button click event
+  const clickCost = () => {
+    setShowCost(true);
+  }
+  const clickIncome = () => {
+    setShowCost(false);
+  }
 
-  // 그래프 input 타입으로 변화하는 함수
+  // data pre-processing function
   const transformData = (data: DataType[]): NivoType[] => {
     const groupedData = data.reduce((acc, item) => {
       if (!acc[item.category]) {
@@ -46,23 +49,34 @@ const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
     }));
   };
 
-  // firebase의 DB 데이터를 가져와서 지출/수입으로 분류하여 따로 페이지에 표시
+  // fetch data
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       let data: DataType[] = [];
       try {
         const lastDate = new Date(year, month, 0).getDate();
+        const promises = [];
         for (let date = 1; date <= lastDate; date++) {
-          const dateString = `${year}${String(month).padStart(2, '0')}${String(date).padStart(2, '0')}`
-          const docsRef = collection(doc(db, "users", userId), dateString);
-          const docsSnap = await getDocs(docsRef);
+          const dateString = `${year}${String(month).padStart(2, '0')}${String(date).padStart(2, '0')}`;
+          const docsRef = collection(doc(db, "users", id), dateString);
+          promises.push(getDocs(docsRef));
+        }
+        const results = await Promise.all(promises);
+        results.forEach(docsSnap => {
           if (!docsSnap.empty) {
             docsSnap.forEach((doc) => {
-              data.push({index: doc.data().index, date: doc.data().date, cost: doc.data().cost, category: doc.data().category, amount: doc.data().amount, memo: doc.data().memo});
-            })
+              data.push({
+                index: doc.data().index,
+                date: doc.data().date,
+                cost: doc.data().cost,
+                category: doc.data().category,
+                amount: doc.data().amount,
+                memo: doc.data().memo,
+              });
+            });
           }
-        }
+        });
         setCostData(transformData(data.filter(item => item.cost)));
         setIncomeData(transformData(data.filter(item => !item.cost)));
       } catch (error) {
@@ -72,15 +86,17 @@ const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
       }
     };
     fetchData();
-  }, [userId, year, month]);
+  }, [id, year, month]);
+
   useEffect(() => {
     setTotalCost(costData.reduce((acc, item) => acc + item.value, 0));
     setTotalIncome(incomeData.reduce((acc, item) => acc + item.value, 0));
   }, [costData, incomeData]);
 
+  // return
   return (
     <div className='graph-container'>
-      {costButton ?
+      {showCost ?
         <div className='graph-info-container'>
           <p></p>
           <button className='graph-button-clicked' onClick={clickCost}>지출</button>
@@ -96,12 +112,12 @@ const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
       }
       {loading ?
         <p>Loading...</p> :
-        (costButton && costData.length === 0 ?
+        (showCost && costData.length === 0 ?
           <p>OOps... No Data.</p> :
-          (!costButton && incomeData.length === 0 ?
+          (!showCost && incomeData.length === 0 ?
             <p>No Data</p> :
             <ResponsivePie
-              data={(costButton ? costData : incomeData)}
+              data={(showCost ? costData : incomeData)}
               margin={{ top: 30, right: 0, bottom: 50, left: 0 }}
               sortByValue={true}
               fit={false}
@@ -134,7 +150,7 @@ const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
                   <br />
                   금액 : {datum.value}원
                   <br />
-                  비율 : {(costButton ? (datum.value/totalCost*100).toFixed(2) : (datum.value/totalIncome*100).toFixed(2))}%
+                  비율 : {(showCost ? (datum.value/totalCost*100).toFixed(2) : (datum.value/totalIncome*100).toFixed(2))}%
                 </div>
               )}
               motionConfig="wobbly"
@@ -146,10 +162,10 @@ const Graph:React.FC<GraphProps> = ({ userId, year, month }) => {
             />
           ) 
         )
-        
       }
     </div>
   )
 }
 
+// export
 export default Graph;

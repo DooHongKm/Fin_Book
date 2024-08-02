@@ -7,8 +7,6 @@ import pwReducer from "./pw";
 import yearReducer from "./year";
 import monthReducer from "./month";
 import dateReducer from "./date";
-import showCostReducer from "./showCost";
-import listIndexReducer from "./listIndex";
 
 // reducer(persist)
 const rootReducer = combineReducers({
@@ -17,8 +15,6 @@ const rootReducer = combineReducers({
   year: yearReducer,
   month: monthReducer,
   date: dateReducer,
-  showCost: showCostReducer,
-  listIndex: listIndexReducer,
 });
 
 const persistConfig = {

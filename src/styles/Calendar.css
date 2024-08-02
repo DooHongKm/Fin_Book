@@ -68,6 +68,6 @@
 .loading-text {
   font-size: 30px;
   font-weight: bold;
-  letter-spacing: 2px;
-  color: rgb(80, 80, 80);
+  letter-spacing: 1px;
+  color: rgb(40, 100, 150);
 }

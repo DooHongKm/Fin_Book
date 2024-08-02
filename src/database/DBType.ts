@@ -53,9 +53,6 @@ export interface CalendarButtonProps {
   totalIncome: number;
 }
 
-// Props (graph)
-export interface GraphProps extends MainInfo {}
-
 // Props (graph input)
 export interface NivoType {
   id: string;
